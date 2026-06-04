@@ -13,7 +13,7 @@ SimplyGreatTimer is a simple timer app that can be used for studing or working a
 
 ## Download
 
-**[Download SimplyGreatTimer]([https://github.com/YOUR_USERNAME/YOUR_REPO/releases/latest/download/Timer.exe](https://github.com/VicoDK/SimplyGreatTimer/releases/latest/download/SimplyGreatTimer.exe))**
+**[Download SimplyGreatTimer](https://github.com/VicoDK/SimplyGreatTimer/MyApp/bin/Release/net10.0/win-x64/SimplyGreatTimer.exe)**
 
 ## Attribution
 
