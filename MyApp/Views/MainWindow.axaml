@@ -1,4 +1,5 @@
 <Window xmlns="https://github.com/avaloniaui"
+        xmlns:colorPicker="clr-namespace:Avalonia.Controls;assembly=Avalonia.Controls.ColorPicker"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:MyApp.ViewModels"
         xmlns:local="using:MyApp.Views"
@@ -28,7 +29,8 @@
 
     <TabControl Margin ="5">
         <TabItem Header = "Main">
-            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="0">
+            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Spacing="0" MinWidth="300">
+                
                 <TextBlock x:Name="WelcomeText" Text="Welcome to SimplyGreatTimer" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
 
@@ -48,15 +50,17 @@
                 <Grid RowDefinitions="*,*"
                     ColumnDefinitions="*,*"
                     Name="CustomeTimerGrid"
-                    IsVisible = "false">
+                    IsVisible = "false"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
 
                     <Label Grid.Row="0" Grid.Column="0" Content="Work Time in min"/>
 
                     <Label Grid.Row="0" Grid.Column="1" Content="Break Time in min"/>
 
-                    <TextBox Grid.Row="1" Grid.Column="0" Text="45" Name="CustomeTimerWorkTime"/>
+                    <NumericUpDown Grid.Row="1" Grid.Column="0" Minimum="0" Maximum="300" Increment="5" Name="CustomeTimerWorkTime"  MinWidth="120" Value="45"/>
 
-                    <TextBox Grid.Row="1" Grid.Column="1" Text="15" Name="CustomeTimerBreakTime" />
+                    <NumericUpDown Grid.Row="1" Grid.Column="1" Minimum="0" Maximum="300" Increment="5" Name="CustomeTimerBreakTime"  MinWidth="120" Value="15"/>
 
                 </Grid>
 
@@ -66,7 +70,7 @@
 />
                 <StackPanel Orientation = "Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="0" IsVisible = "false" x:Name="CountDownTimeStackPanel">
                     <Label Content="Work Time in min" VerticalAlignment="Center"/>
-                    <TextBox Text="45" Name="CountDownTimerWorkTime"/>
+                    <NumericUpDown Minimum="0" Maximum="300" Increment="5" Name="CountDownTimerWorkTime"  MinWidth="120" Value="60"/>
                 </StackPanel>
 
 
@@ -78,6 +82,7 @@
 
              </TabItem>
              <TabItem Header = "Custome">
+             <ScrollViewer>
                 <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="0">
 
                     <TextBlock FontSize="24" Text="Layout" HorizontalAlignment="Left" VerticalAlignment="Center"/>
@@ -98,13 +103,21 @@
                         <Button  Grid.Row="2" Grid.Column="1" x:Name="BottomCenter" Content="Bottom" Width="80" Height="80"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="PositionButton_Click"/>
                         <Button  Grid.Row="2" Grid.Column="2" x:Name="BottomRight" Width="80" Height="80" Click="PositionButton_Click"> <TextBlock TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"> Bottom <LineBreak/> Right </TextBlock> </Button >
                     </Grid>
-
+                
                 <TextBlock Text=" " HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBlock Text="Special Timers" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBlock Text="Special Timers" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="24"/>
 
                 <ToggleSwitch Name="TwentyTwentyTwentyTimer" OffContent="20/20/20 Timer" OnContent="20/20/20 Timer"/>
                 <ToggleSwitch Name="_30_30rule" OffContent="30-30 rule Timer" OnContent="30-30 rule Timer"/>
+
+
+                <TextBlock Text=" " HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                <TextBlock Text="Colors" HorizontalAlignment="Left" FontSize="24"/>
+
+
                 </StackPanel>
+                </ScrollViewer>
              </TabItem>
     </TabControl>
 

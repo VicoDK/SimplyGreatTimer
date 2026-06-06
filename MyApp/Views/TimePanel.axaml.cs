@@ -60,7 +60,7 @@ public partial class TimePanel : Window
     #region Setup of timer
     DispatcherTimer timer;
 
-    public List<ClassicTimer> timers = new();   // FIXED (was null before)
+    public List<ClassicTimer> timers = new();   
     StackPanel timerPanel = new StackPanel();
 
 
@@ -98,51 +98,52 @@ public partial class TimePanel : Window
         timer.Start();
         
 
-        //ai made this
-        // Create MenuFlyout
-        var menuButton = new Button
-        {
-            Content = "Menu",
-            Margin = new Thickness(10),
-            HorizontalAlignment = HorizontalAlignment.Left
-        };
-        menuButton.Classes.Add("timer-button");
+  
+var menuButton = new Button
+{
+    Content = "Menu",
+    Margin = new Thickness(10),
+    HorizontalAlignment = HorizontalAlignment.Stretch
+};
 
-        // Create flyout
-        var flyout = new MenuFlyout
-        {
-            Placement = PlacementMode.BottomEdgeAlignedLeft
-        };
+menuButton.Classes.Add("timer-button");
 
-        // Pause item
-        pauseItem = new MenuItem
-        {
-            Header = "Pause"
-        };
-        pauseItem.Classes.Add("timer-menu");
-        pauseItem.Click += Pause_Click;
+// Create flyout
+var flyout = new MenuFlyout
+{
+    Placement = PlacementMode.BottomEdgeAlignedLeft
+};
 
-        
+// Pause item
+pauseItem = new MenuItem
+{
+    Header = "Pause",
+    MinWidth = 120
+};
+
+pauseItem.Classes.Add("timer-menu");
+pauseItem.Click += Pause_Click;
+
+// Back item
+var backItem = new MenuItem
+{
+    Header = "Back",
+    MinWidth = 120
+};
 
 
-        // Back item
-        var backItem = new MenuItem
-        {
-            Header = "Back"
-        };
-        backItem.Classes.Add("timer-menu");
-        backItem.Click += Back_Click;
+backItem.Classes.Add("timer-menu");
+backItem.Click += Back_Click;
 
-        // Add items to flyout
-        flyout.Items.Add(pauseItem);
-        flyout.Items.Add(backItem);
+// Add items
+flyout.Items.Add(pauseItem);
+flyout.Items.Add(backItem);
 
-        // Attach flyout to button
-        menuButton.Flyout = flyout;
+// Attach flyout
+menuButton.Flyout = flyout;
 
-        // Add button to your panel
-        timerPanel.Children.Add(menuButton);
-        //no longer Ai
+// Add to panel
+timerPanel.Children.Add(menuButton);
 
 
     }
@@ -335,7 +336,7 @@ public class ClassicTimer
         {
             case ClassicTimerState.Work:
                 WorktimeUpdate();
-                if (Time <= 0 || BreakTimeSet != 0)
+                if (Time <= 0)
                 {
                     WorkTimerState = ClassicTimerState.DeepWorkToBreak;
                 }
