@@ -19,4 +19,5 @@ SimplyGreatTimer is a simple timer app that can be used for studing or working a
 ## Attribution
 
 If you use this project in your own work, a credit or link back to the
-original repository is greatly appreciated
+original repository is greatly appreciated <br>
+If you use this project in a commercial product or for any monetized use, please contact me to obtain a commercial license. Terms will be agreed upon in a fair written agreement between both parties.
