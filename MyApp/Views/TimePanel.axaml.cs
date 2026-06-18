@@ -6,11 +6,15 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Threading;
 using Avalonia.Interactivity;
-using Avalonia.Media;
 using Avalonia.Layout;
-using System.Formats.Asn1;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
+using System.IO;
+using NAudio.Wave;
+using Avalonia.Input;
+
+
+
 
 namespace MyApp.Views;
 
@@ -63,8 +67,10 @@ public partial class TimePanel : Window
     public List<ClassicTimer> timers = new();   
     StackPanel timerPanel = new StackPanel();
 
+    private bool _menuOpen = false;
 
-    public TimePanel(List<ClassicTimerPreset> presets, string LayoutPoint)
+
+    public TimePanel(List<ClassicTimerPreset> presets, string LayoutPoint, bool showerTimer, ClassicTimer.AudioSetting audioSetting)
     {
 
 
@@ -84,7 +90,9 @@ public partial class TimePanel : Window
                 preset.ToBreakButton,
                 preset.BackToWorkButton,
                 preset.Name,
-                timerPanel
+                timerPanel, 
+                showerTimer,
+                audioSetting
             ));
         }
 
@@ -103,7 +111,19 @@ public partial class TimePanel : Window
         {
             Content = "Menu",
             Margin = new Thickness(10),
-            HorizontalAlignment = HorizontalAlignment.Stretch
+            HorizontalAlignment = HorizontalAlignment.Stretch,
+            IsVisible = false
+        };
+
+        this.PointerEntered += (_, _) =>
+        {
+            menuButton.IsVisible = true;
+        };
+
+        this.PointerExited += (_, _) =>
+        {
+            if (!_menuOpen)
+                menuButton.IsVisible = false;
         };
 
         menuButton.Classes.Add("timer-button");
@@ -129,6 +149,20 @@ public partial class TimePanel : Window
         {
             Header = "Back",
             MinWidth = 120
+        };
+
+        flyout.Opened += (_, _) =>
+        {
+            _menuOpen = true;
+            menuButton.IsVisible = true;
+        };
+
+        flyout.Closed += (_, _) =>
+        {
+            _menuOpen = false;
+
+            if (!this.IsPointerOver)
+                menuButton.IsVisible = false;
         };
 
 
@@ -200,6 +234,12 @@ public partial class TimePanel : Window
                 x = area.X + area.Width - w;
                 y = area.Y + area.Height - h;
                 break;
+            case "Freemove":
+                x = area.X + (area.Width - w) / 2;
+                y = area.Y + (area.Height - h) / 2;
+                Moveable = true;
+
+            break;
         }
 
         Position = new PixelPoint(x, y);
@@ -207,10 +247,7 @@ public partial class TimePanel : Window
     #endregion
 
     #region Functions for timer ui
-    public void PlaySound()
-    {
-        Console.Beep();
-    }
+
 
     public void Back_Click(object? sender, RoutedEventArgs e)
     {
@@ -254,13 +291,46 @@ public partial class TimePanel : Window
         }
     }
     #endregion
+
+    bool Moveable = false;
+    private void Window_PointerPressed(object? sender, PointerPressedEventArgs e)
+    {
+        if (e.GetCurrentPoint(this).Properties.IsLeftButtonPressed && Moveable)
+        {
+            BeginMoveDrag(e);
+        }
+    }
 }
 public class ClassicTimer
 {
     #region Setup of timer
     public string Name;
-    public ClassicTimer(int workTimeSet, int breakTimeSet, bool needToBreakButton, bool needBackToWorkButton, string name, StackPanel timerPanel)
+    bool showTimer;
+
+    private WaveOutEvent outputDevice;
+    private AudioFileReader audioFile;
+    private bool _isPlaying;
+    public ClassicTimer(int workTimeSet, int breakTimeSet, bool needToBreakButton, bool needBackToWorkButton, string name, StackPanel timerPanel, bool showTimer, AudioSetting audioSetting)
 {
+    //audio setup
+    string filePath = Path.Combine(
+        AppContext.BaseDirectory,
+        "Audio",
+        "CurrentTrack.mp3");
+
+    audioFile = new AudioFileReader(filePath);
+
+    //makes a outputDevice and gives it a file
+    outputDevice = new WaveOutEvent();
+    outputDevice.Init(audioFile);
+
+    //makes a functiunc run when audio is done
+    outputDevice.PlaybackStopped += OnPlaybackStopped;
+    this.audioSetting = audioSetting;
+
+
+
+    this.showTimer = showTimer; 
     WorkTimeSet = workTimeSet;
     Time = WorkTimeSet;
     BreakTimeSet = breakTimeSet;
@@ -304,9 +374,20 @@ public class ClassicTimer
 
         BackToWork.Click += BackToWork_Click;
         panel.Children.Add(BackToWork);
+
+
+
+
     }
 }
 #endregion
+    public enum AudioSetting
+    {
+        ConsoleBeep,
+        CustomeSound
+
+    }
+    public AudioSetting audioSetting;
 
 
     public int WorkTimeSet; 
@@ -429,24 +510,33 @@ public class ClassicTimer
         int seconds = text % 60;
         if (WorkTimerState == ClassicTimerState.Work)
         {
-            if (hours > 0)
+            if (showTimer && hours > 0)
             {
                 TimerTextBlock.Text = $" {Name} Timer: {hours:D2}:{minutes:D2}";
             }
-            else
+            else if (showTimer)
             {
                 TimerTextBlock.Text = $" {Name} Timer: {minutes:D2}:{seconds:D2}";
             }
+            else if (!showTimer)
+            {
+                TimerTextBlock.Text = $" {Name} Timer: Working";
+            }
+
         }
         else if (WorkTimerState == ClassicTimerState.BreakTime)
         {
-            if (hours > 0)
+            if (showTimer && hours > 0)
             {
                 TimerTextBlock.Text = $" {Name} Break Timer : {hours:D2}:{minutes:D2}";
             }
-            else
+            else if (showTimer)
             {
                 TimerTextBlock.Text = $" {Name} Break Timer : {minutes:D2}:{seconds:D2}";
+            }
+            else if (!showTimer)
+            {
+                TimerTextBlock.Text = $" {Name} Break Timer : Break";
             }
         }
         
@@ -458,13 +548,6 @@ public class ClassicTimer
         BreakButton_Click();
     }
 
-    /*dont know why this is here but will keep it if it somehow is used 
-    public void AutopBreakButton_Click()
-    {
-        PlaySound();
-
-        
-    }*/
 
     public void BreakButton_Click()
     {
@@ -493,14 +576,60 @@ public class ClassicTimer
 
     }
 
+
     public void BreakDoneSound()
     {
-        System.Console.Beep();
+        switch (audioSetting)
+        {
+            case AudioSetting.ConsoleBeep:
+            
+            System.Console.Beep();
+
+            break;
+            case AudioSetting.CustomeSound:
+
+            if (_isPlaying)
+                return;
+
+            _isPlaying = true;
+            
+            //goes back to the start of audio file
+            audioFile.Position = 0;   
+            outputDevice.Play();
+
+            break;
+            
+        }
+
     }
 
-    public void WorkDoneSound()
+    //this runs when the sound is done
+    private void OnPlaybackStopped(object? sender, StoppedEventArgs e)
     {
-        System.Console.Beep();
+        _isPlaying = false;
+    }
+
+    
+
+    public void WorkDoneSound()
+    {   
+        switch (audioSetting)
+        {
+            case AudioSetting.ConsoleBeep:
+            
+            System.Console.Beep();
+
+            break;
+            case AudioSetting.CustomeSound:
+            
+            //goes back to the start of audio file
+            audioFile.Position = 0;   
+            outputDevice.Play();
+
+            break;
+            
+        }
+
     }
 
     #endregion

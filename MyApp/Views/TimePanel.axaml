@@ -14,7 +14,8 @@
         TransparencyLevelHint="Blur"
         WindowStartupLocation="Manual"
         Topmost="True"
-        WindowDecorations="None">
+        WindowDecorations="None"
+        PointerPressed="Window_PointerPressed">
         
 
     <Design.DataContext>

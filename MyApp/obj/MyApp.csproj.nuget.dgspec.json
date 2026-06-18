@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\SimplyGreatTimer\\MyApp\\MyApp.csproj": {}
+    "D:\\SimplyGreatTimer\\myapp\\MyApp.csproj": {}
   },
   "projects": {
-    "D:\\SimplyGreatTimer\\MyApp\\MyApp.csproj": {
+    "D:\\SimplyGreatTimer\\myapp\\MyApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\SimplyGreatTimer\\MyApp\\MyApp.csproj",
+        "projectUniqueName": "D:\\SimplyGreatTimer\\myapp\\MyApp.csproj",
         "projectName": "MyApp",
-        "projectPath": "D:\\SimplyGreatTimer\\MyApp\\MyApp.csproj",
+        "projectPath": "D:\\SimplyGreatTimer\\myapp\\MyApp.csproj",
         "packagesPath": "C:\\Users\\victo\\.nuget\\packages\\",
-        "outputPath": "D:\\SimplyGreatTimer\\MyApp\\obj\\",
+        "outputPath": "D:\\SimplyGreatTimer\\myapp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -73,6 +73,10 @@
             "CommunityToolkit.Mvvm": {
               "target": "Package",
               "version": "[8.4.2, )"
+            },
+            "NAudio": {
+              "target": "Package",
+              "version": "[2.3.0, )"
             }
           },
           "imports": [

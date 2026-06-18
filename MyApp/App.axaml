@@ -2,7 +2,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="MyApp.App"
              xmlns:local="using:MyApp"
-             RequestedThemeVariant="Default">
+             RequestedThemeVariant="Default"
+            xmlns:controls="clr-namespace:Avalonia.Controls;assembly=Avalonia.Controls"
+>
 
     <Application.DataTemplates>
         <local:ViewLocator/>
@@ -10,7 +12,8 @@
 
     <!-- Global resources -->
     <Application.Resources>
-        <SolidColorBrush x:Key="TextBrush">White</SolidColorBrush>
+        <SolidColorBrush x:Key="Primary">White</SolidColorBrush>
+        <SolidColorBrush x:Key="Secondary ">White</SolidColorBrush>
     </Application.Resources>
 
     <!-- GLOBAL STYLES -->
@@ -19,68 +22,111 @@
         <!-- Theme MUST come first -->
         <FluentTheme />
 
-        <!-- Your global overrides -->
+        <!-- all text blocks color--> 
         <Style Selector="TextBlock">
-            <Setter Property="Foreground" Value="{DynamicResource  TextBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource  Primary}" />
         </Style>
 
+        <!-- RadioButton text color-->
         <Style Selector="RadioButton">
-            <Setter Property="Foreground" Value="{DynamicResource  TextBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource  Primary}" />
         </Style>
 
-        <Style Selector="CheckBox">
-            <Setter Property="Foreground" Value="{DynamicResource  TextBrush}" />
+        <!-- outline for NumericUpDown-->
+        <Style Selector="controls|NumericUpDown">
+            <Setter Property="BorderBrush" Value="{DynamicResource  Primary}"/>
         </Style>
 
-        <Style Selector="Button.timer-button">
-            <Setter Property="Foreground" Value="{DynamicResource  TextBrush}"/>
-        </Style>
 
-        <Style Selector="Button.timer-button:pointerover /template/ ContentPresenter">
-            <Setter Property="TextBlock.Foreground" Value="{DynamicResource  TextBrush}"/>
-        </Style>
-
-        <Style Selector="Button.timer-button:pressed /template/ ContentPresenter">
-            <Setter Property="TextBlock.Foreground" Value="{DynamicResource  TextBrush}"/>
-        </Style>
-
-        <!-- Base (normal state) -->
-        <Style Selector="MenuItem.timer-menu /template/ ContentPresenter">
-            <Setter Property="Foreground" Value="{DynamicResource  TextBrush}"/>
-        </Style>
-
-        <!-- Hover -->
-        <Style Selector="MenuItem.timer-menu:pointerover /template/ ContentPresenter">
-            <Setter Property="Foreground" Value="{DynamicResource  TextBrush}"/>
-        </Style>
-
-        <!-- Pressed -->
-        <Style Selector="MenuItem.timer-menu:pressed /template/ ContentPresenter">
-            <Setter Property="Foreground" Value="{DynamicResource  TextBrush}"/>
-        </Style>
-
-        <Style Selector="MenuItem.timer-menu:pointerover /template/ ContentPresenter">
-            <Setter Property="Foreground" Value="{DynamicResource  TextBrush}"/>
-        </Style>
 
          <Style Selector="Button">
-            <Setter Property="Foreground" Value="{DynamicResource  TextBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource  Primary}"/>
         </Style> 
 
+        <!--hover over button-->
+        <Style Selector="Button:pointerover /template/ ContentPresenter">
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource  Primary}"/>
+        </Style>
 
-        <Style Selector="Label">
-            <Setter Property="Foreground" Value="{DynamicResource  TextBrush}"/>
+        <!--press button-->
+        <Style Selector="Button:pressed /template/ ContentPresenter">
+            <Setter Property="TextBlock.Foreground" Value="{DynamicResource  Primary}"/>
         </Style>
 
 
-        <!-- change background-->
+        <!-- MenuItem button normal-->
+        <Style Selector="MenuItem /template/ ContentPresenter">
+            <Setter Property="Foreground" Value="{DynamicResource  Primary}"/>
+        </Style>
+
+        <!-- MenuItem button press-->
+        <Style Selector="MenuItem:pointerover /template/ ContentPresenter">
+            <Setter Property="Foreground" Value="{DynamicResource  Primary}"/>
+        </Style>
+
+        <!-- MenuItem button hover Background-->
         <Style Selector="MenuItem:pointerover /template/ Border">
             <Setter Property="Background" Value="#E6000000"/>
         </Style>
 
+        <!-- MenuItem button press Background-->
         <Style Selector="MenuItem:pressed /template/ Border">
             <Setter Property="Background" Value="Black"/>
         </Style>
+
+
+        <!-- color labels-->
+        <Style Selector="Label">
+            <Setter Property="Foreground" Value="{DynamicResource  Primary}"/>
+        </Style>
+
+
+
+<!-- normal tab -->
+<Style Selector="TabItem">
+    <Setter Property="Foreground" Value="{DynamicResource Primary}"/>
+</Style>
+
+<!-- selected tab ONLY -->
+<Style Selector="TabItem:selected">
+    <Setter Property="Foreground" Value="{DynamicResource Primary}"/>
+    <Setter Property="BorderBrush" Value="{DynamicResource Primary}"/>
+    <Setter Property="BorderThickness" Value="0 0 0 3"/>
+    <Setter Property="Background" Value="#E6424242"/>
+</Style>
+
+<Style Selector="TabItem /template/ Border#SelectionIndicator">
+    <Setter Property="Background" Value="Transparent"/>
+</Style>
+
+
+
+
+    <!-- toggleswitch-->
+    <Style Selector="ToggleSwitch:checked /template/ Border">
+        <Setter Property="Background" Value="{DynamicResource  Secondary}"/>
+    </Style>
+
+    <!-- RadioButton-->
+    <Style Selector="RadioButton:checked /template/ Ellipse#CheckOuterEllipse">
+        <Setter Property="Fill" Value="{DynamicResource Secondary}" />
+        <Setter Property="Stroke" Value="{DynamicResource Secondary}" />
+    </Style>
+
+<!-- exit-->
+<Style Selector="Button.ExitButton">
+    <Setter Property="Background" Value="#3FFFFFFF"/>
+    <Setter Property="BorderBrush" Value="Transparent"/>
+    <Setter Property="Foreground" Value="{DynamicResource  Primary}"/>
+    <Setter Property="FontSize" Value="40"/>
+    <Setter Property="Padding" Value="0"/>
+</Style>
+
+<Style Selector="TabItem:selected /template/ Border#PART_SelectedPipe">
+    <Setter Property="Background" Value="Transparent"/>
+</Style>
+
+
 
 
     </Application.Styles>

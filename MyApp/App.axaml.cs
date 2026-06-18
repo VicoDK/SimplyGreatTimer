@@ -6,6 +6,7 @@ using System.Linq;
 using Avalonia.Markup.Xaml;
 using MyApp.ViewModels;
 using MyApp.Views;
+using Avalonia.Diagnostics; 
 
 namespace MyApp;
 
@@ -17,15 +18,16 @@ public partial class App : Application
     }
 
     public override void OnFrameworkInitializationCompleted()
+{
+    if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
     {
-        if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+        desktop.MainWindow = new MainWindow
         {
-            desktop.MainWindow = new MainWindow
-            {
-                DataContext = new MainWindowViewModel(),
-            };
-        }
-
-        base.OnFrameworkInitializationCompleted();
+            DataContext = new MainWindowViewModel(),
+        };
+        
     }
+
+    base.OnFrameworkInitializationCompleted();
+}
 }
