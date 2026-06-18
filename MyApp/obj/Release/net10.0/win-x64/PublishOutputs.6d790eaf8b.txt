@@ -1,6 +1,0 @@
-D:\SimplyGreatTimer\MyApp\bin\Release\net10.0\win-x64\publish\av_libglesv2.dll
-D:\SimplyGreatTimer\MyApp\bin\Release\net10.0\win-x64\publish\libHarfBuzzSharp.dll
-D:\SimplyGreatTimer\MyApp\bin\Release\net10.0\win-x64\publish\libHarfBuzzSharp.pdb
-D:\SimplyGreatTimer\MyApp\bin\Release\net10.0\win-x64\publish\libSkiaSharp.dll
-D:\SimplyGreatTimer\MyApp\bin\Release\net10.0\win-x64\publish\libSkiaSharp.pdb
-D:\SimplyGreatTimer\MyApp\bin\Release\net10.0\win-x64\publish\MyApp.exe

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "oMocrPhuhsc=",
+  "dgSpecHash": "g7wmBxL2D4E=",
   "success": true,
-  "projectFilePath": "D:\\SimplyGreatTimer\\myapp\\MyApp.csproj",
+  "projectFilePath": "D:\\CleanerVersion\\MyApp\\MyApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\victo\\.nuget\\packages\\avalonia\\12.0.4\\avalonia.12.0.4.nupkg.sha512",
     "C:\\Users\\victo\\.nuget\\packages\\avalonia.angle.windows.natives\\2.1.27548.20260419\\avalonia.angle.windows.natives.2.1.27548.20260419.nupkg.sha512",
@@ -19,7 +19,7 @@
     "C:\\Users\\victo\\.nuget\\packages\\avalonia.win32\\12.0.4\\avalonia.win32.12.0.4.nupkg.sha512",
     "C:\\Users\\victo\\.nuget\\packages\\avalonia.x11\\12.0.4\\avalonia.x11.12.0.4.nupkg.sha512",
     "C:\\Users\\victo\\.nuget\\packages\\avaloniaui.diagnosticssupport\\2.2.1\\avaloniaui.diagnosticssupport.2.2.1.nupkg.sha512",
-    "C:\\Users\\victo\\.nuget\\packages\\communitytoolkit.mvvm\\8.4.2\\communitytoolkit.mvvm.8.4.2.nupkg.sha512",
+    "C:\\Users\\victo\\.nuget\\packages\\communitytoolkit.mvvm\\8.4.1\\communitytoolkit.mvvm.8.4.1.nupkg.sha512",
     "C:\\Users\\victo\\.nuget\\packages\\harfbuzzsharp\\8.3.1.3\\harfbuzzsharp.8.3.1.3.nupkg.sha512",
     "C:\\Users\\victo\\.nuget\\packages\\harfbuzzsharp.nativeassets.linux\\8.3.1.3\\harfbuzzsharp.nativeassets.linux.8.3.1.3.nupkg.sha512",
     "C:\\Users\\victo\\.nuget\\packages\\harfbuzzsharp.nativeassets.macos\\8.3.1.3\\harfbuzzsharp.nativeassets.macos.8.3.1.3.nupkg.sha512",
