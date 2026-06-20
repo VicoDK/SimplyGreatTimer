@@ -7,6 +7,8 @@ using Avalonia;
 using System.IO;
 using Avalonia.Platform.Storage;
 using Avalonia.Input;
+using System.Diagnostics;
+
 
 
 
@@ -25,6 +27,9 @@ public partial class MainWindow : Window
     public List<ClassicTimer> TimerContinue = new List<ClassicTimer>();
     public List<int> TimesRemaining = new List<int>();
 
+    /// <summary>
+    /// setup of mainwindow
+    /// </summary>
     public MainWindow()
     {
         InitializeComponent();
@@ -52,6 +57,11 @@ public partial class MainWindow : Window
         PositionButton_Click(TopLeft, new RoutedEventArgs());
     }
 
+    /// <summary>
+    /// all the logic behind the start button
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     public void StartButton_Click(object sender, RoutedEventArgs e)
     {
         bool showerTimer = false;
@@ -63,6 +73,7 @@ public partial class MainWindow : Window
   
         bool TimerSelected = false;
         //workTimers
+        // this is how you can make a workTimer
         if (DeepWorkTimer.IsChecked == true)
         {
             TimerSelected = true;
@@ -139,6 +150,7 @@ public partial class MainWindow : Window
 
 
         //Extra Timers
+        // this is how a extra timer is made
         if (TwentyTwentyTwentyTimer.IsChecked == true)
         {
             TimerSelected = true;
@@ -178,6 +190,11 @@ public partial class MainWindow : Window
 
     }
 
+    /// <summary>
+    /// logic behind the Continue button 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     public void Continue(object? sender, RoutedEventArgs e)
     {
 
@@ -226,13 +243,24 @@ public partial class MainWindow : Window
         
     }
 
+    /// <summary>
+    /// function to hide/show the CustomeTimer input field
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     public void CustomeTimer_CheckedChanged(object? sender, RoutedEventArgs e)
     {
 
         CustomeTimerGrid.IsVisible = CustomeTimer.IsChecked ?? false; 
         
+        
     }
 
+    /// <summary>
+    /// function to hide/show the countdownTimer input field
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     public void CountDownTimer_CheckedChanged(object? sender, RoutedEventArgs e)
     {
 
@@ -241,6 +269,11 @@ public partial class MainWindow : Window
     }
 
 
+    /// <summary>
+    /// mode cahnge function
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void Modes_IsCheckedChanged(object? sender, RoutedEventArgs e)
     {
         if (Modes.IsChecked == false)
@@ -283,8 +316,27 @@ public partial class MainWindow : Window
         }
     }
 
+    /// <summary>
+    /// function to link to Github
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void OpenLink(object? sender, PointerPressedEventArgs e)
+    {
+        Process.Start(new ProcessStartInfo
+        {
+            FileName = "https://github.com/VicoDK/SimplyGreatTimer",
+            UseShellExecute = true
+        });
+    }
+
     private Button? _selectedButton;
 
+    /// <summary>
+    /// the function for selection posistion of timer
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void PositionButton_Click(object? sender, RoutedEventArgs e)
     {
         if (sender is not Button clickedButton)
@@ -301,6 +353,11 @@ public partial class MainWindow : Window
         LayoutPoint = _selectedButton.Name;
     }
 
+    /// <summary>
+    /// function to pick from pre made color selection
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     void ChangeColor_Click(object sender, SelectionChangedEventArgs e)
     {
         if (!_isLoaded)
@@ -342,7 +399,11 @@ public partial class MainWindow : Window
         
     }
 
-
+    /// <summary>
+    /// the function that always the user to pick there own color
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="args"></param>
     void PickColor_click(object sender, RoutedEventArgs args)
     {
         Application.Current.Resources["Primary"] = new SolidColorBrush(Color.Parse("#" + CostumePrimary.Text));
@@ -350,7 +411,11 @@ public partial class MainWindow : Window
         Application.Current.Resources["Secondary"] = new SolidColorBrush(Color.Parse("#" + CostumeSecondary.Text));
     }
   
-
+    /// <summary>
+    /// the function for getting a new sound for tobreak and towork
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="args"></param>
     public async void SaveFileButton_Clicked(object sender, RoutedEventArgs args)
     {
         //open files menu and lets user pick a audio file
@@ -391,9 +456,13 @@ public partial class MainWindow : Window
 
         }
 
-        ClassicTimer.AudioSetting audioSetting;
+        ClassicTimer.AudioSetting audioSetting; // stores sound settings
 
-        
+        /// <summary>
+        /// this is the function for changing sounds 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void SoundSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (!_isLoaded)
@@ -418,7 +487,11 @@ public partial class MainWindow : Window
             
         }
 
-
+    /// <summary>
+    /// this always you to drage the app position
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void Window_PointerPressed(object? sender, PointerPressedEventArgs e)
     {
         if (e.GetCurrentPoint(this).Properties.IsLeftButtonPressed )
@@ -427,13 +500,23 @@ public partial class MainWindow : Window
         }
     }
 
+
+    /// <summary>
+    /// function for closing the app
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="args"></param>
     private void Exit_Click(object sender, RoutedEventArgs args)
     {
         
         Close();
     }
 
-
+/// <summary>
+/// this is to make sure you can scroll all the options in a ComboBox
+/// </summary>
+/// <param name="sender"></param>
+/// <param name="e"></param>
 private void conbo_PointerPressed(object? sender, PointerPressedEventArgs e)
 {
     e.Handled = true;
@@ -442,7 +525,11 @@ private void conbo_PointerPressed(object? sender, PointerPressedEventArgs e)
 
 
 
-
+/// <summary>
+/// this function is to provent you from changing selected option on comboBoxes by scrolling over them
+/// </summary>
+/// <param name="sender"></param>
+/// <param name="e"></param>
 private void ComboBox_PointerWheelChanged(object? sender, PointerWheelEventArgs e)
 {
     if (sender is ComboBox cb)
@@ -457,6 +544,11 @@ private void ComboBox_PointerWheelChanged(object? sender, PointerWheelEventArgs 
 
 }
 
+
+
+/// <summary>
+/// the timer preset to giv over to timepanel
+/// </summary>
 public class ClassicTimerPreset
 {
     public int WorkTime;

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\CleanerVersion\\MyApp\\MyApp.csproj": {}
+    "D:\\SimplyGreatTimer\\myapp\\MyApp.csproj": {}
   },
   "projects": {
-    "D:\\CleanerVersion\\MyApp\\MyApp.csproj": {
+    "D:\\SimplyGreatTimer\\myapp\\MyApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\CleanerVersion\\MyApp\\MyApp.csproj",
+        "projectUniqueName": "D:\\SimplyGreatTimer\\myapp\\MyApp.csproj",
         "projectName": "MyApp",
-        "projectPath": "D:\\CleanerVersion\\MyApp\\MyApp.csproj",
+        "projectPath": "D:\\SimplyGreatTimer\\myapp\\MyApp.csproj",
         "packagesPath": "C:\\Users\\victo\\.nuget\\packages\\",
-        "outputPath": "D:\\CleanerVersion\\MyApp\\obj\\",
+        "outputPath": "D:\\SimplyGreatTimer\\myapp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -67,6 +67,8 @@
               "version": "[12.0.4, )"
             },
             "AvaloniaUI.DiagnosticsSupport": {
+              "include": "None",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[2.2.1, )"
             },
@@ -90,6 +92,20 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Runtime.osx-x64",
+              "version": "[10.0.0-rc.2.25502.107, 10.0.0-rc.2.25502.107]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.osx-x64",
+              "version": "[10.0.0-rc.2.25502.107, 10.0.0-rc.2.25502.107]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Runtime.osx-x64",
+              "version": "[10.0.0-rc.2.25502.107, 10.0.0-rc.2.25502.107]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
@@ -370,6 +386,11 @@
             "System.Xml.XPath": "(,4.3.32767]",
             "System.Xml.XPath.XDocument": "(,5.0.32767]"
           }
+        }
+      },
+      "runtimes": {
+        "osx-x64": {
+          "#import": []
         }
       }
     }

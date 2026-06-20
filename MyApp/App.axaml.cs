@@ -26,6 +26,13 @@ public partial class App : Application
             };
         }
 
+        /*AppDomain.CurrentDomain.UnhandledException += (s, e) =>
+        {
+            File.WriteAllText(
+                Path.Combine(AppContext.BaseDirectory, "crash.txt"),
+                e.ExceptionObject.ToString());
+        };*/
+
         base.OnFrameworkInitializationCompleted();
     }
 }

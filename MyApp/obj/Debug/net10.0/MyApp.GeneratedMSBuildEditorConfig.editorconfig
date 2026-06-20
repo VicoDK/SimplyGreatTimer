@@ -22,17 +22,17 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = MyApp
-build_property.ProjectDir = D:\CleanerVersion\MyApp\
+build_property.ProjectDir = D:\SimplyGreatTimer\MyApp\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.EffectiveAnalysisLevelStyle = 10.0
 build_property.EnableCodeStyleSeverity = 
 
-[D:/CleanerVersion/MyApp/App.axaml]
+[D:/SimplyGreatTimer/MyApp/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[D:/CleanerVersion/MyApp/Views/MainWindow.axaml]
+[D:/SimplyGreatTimer/MyApp/Views/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[D:/CleanerVersion/MyApp/Views/TimePanel.axaml]
+[D:/SimplyGreatTimer/MyApp/Views/TimePanel.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

@@ -1,235 +1,400 @@
 <Window xmlns="https://github.com/avaloniaui"
-        xmlns:colorPicker="clr-namespace:Avalonia.Controls;assembly=Avalonia.Controls.ColorPicker"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="using:MyApp.ViewModels"
-        xmlns:local="using:MyApp.Views"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="200"
-        Width="400"
-        Height="450"    
-        x:Class="MyApp.Views.MainWindow"
-        x:DataType="local:MainWindow"
-        Icon="/Assets/timer.ico"
-        Title="SimplyGreatTimer"
-        CanResize="False"
-        Background="#E6000000"
-        TransparencyLevelHint="Blur"
-        WindowStartupLocation="Manual"
-        Foreground="White"
-        WindowDecorations="None"
-        PointerPressed="Window_PointerPressed"
-        >
-        
+    xmlns:colorPicker="clr-namespace:Avalonia.Controls;assembly=Avalonia.Controls.ColorPicker"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="using:MyApp.ViewModels"
+    xmlns:local="using:MyApp.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="200"
+    Width="400"
+    Height="450"    
+    x:Class="MyApp.Views.MainWindow"
+    x:DataType="local:MainWindow"
+    Icon="/Assets/Icon.ico"
+    Title="SimplyGreatTimer"
+    CanResize="False" 
+    Background="#E6000000"
+    TransparencyLevelHint="Blur"
+    WindowStartupLocation="Manual"
+    Foreground="White"
+    WindowDecorations="None"
+    PointerPressed="Window_PointerPressed"
+    >
+
 
     <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+
 
         <vm:MainWindowViewModel/>
     </Design.DataContext>
-<DockPanel HorizontalAlignment="Stretch">
-    
-    <TabControl Margin ="5">
-        <TabItem Header = "Main" Name="tab1" Opacity="0" IsHitTestVisible = "false">
-            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="0" MinWidth="300">
-                
-                <TextBlock Text=" " HorizontalAlignment="Center" VerticalAlignment="Center" Width="400"/>
-                <TextBlock x:Name="WelcomeText" Text="Welcome to SimplyGreatTimer" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    <DockPanel HorizontalAlignment="Stretch">
 
-
-                <TextBlock Text=" " HorizontalAlignment="Center" VerticalAlignment="Center" Width="400"/>
-                <TextBlock Text="WorkTimers" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <RadioButton Name="DeepWorkTimer" 
-                Content="Deep Work Timer"  
-                Margin="110,0,0,0"/>
-                <RadioButton Name="PomodoroTimer" 
-                Content="Pomodoro Timer"
-                Margin="110,0,0,0"/>
-                <RadioButton Name="_52_17Timer" 
-                Content="52/17 Timer"
-                Margin="110,0,0,0"/>
-                <RadioButton Name="CustomeTimer" 
-                Content="CustomeTimer"
-                IsCheckedChanged="CustomeTimer_CheckedChanged"
-                Margin="110,0,0,0"/>
+        <TabControl Margin ="5">
+            <TabItem Header = "Main" 
+                Name="tab1" 
+                Opacity="0"
+                IsHitTestVisible = "false">
                 
 
-                <Grid RowDefinitions="*,*"
-                    ColumnDefinitions="*,*"
-                    Name="CustomeTimerGrid"
-                    IsVisible = "false"
+                
+                <Grid>
+
+    <!-- Main Content -->
+    <StackPanel VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Spacing="0"
+                MinWidth="300"
+                Margin="0,0,0,60">
+
+        <!--Welcome Text-->
+        <TextBlock Text=" "
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Width="400"/>
+
+        <TextBlock x:Name="WelcomeText"
+                   Text="Welcome to SimplyGreatTimer"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"/>
+
+        <TextBlock Text=" "
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Width="400"/>
+
+        <!--all the timer selection buttons-->
+        <TextBlock Text="WorkTimers"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"/>
+
+        <RadioButton Name="DeepWorkTimer"
+                     Content="Deep Work Timer"
+                     Margin="110,0,0,0"/>
+
+        <RadioButton Name="PomodoroTimer"
+                     Content="Pomodoro Timer"
+                     Margin="110,0,0,0"/>
+
+        <RadioButton Name="_52_17Timer"
+                     Content="52/17 Timer"
+                     Margin="110,0,0,0"/>
+
+        <RadioButton Name="CustomeTimer"
+                     Content="CustomeTimer"
+                     IsCheckedChanged="CustomeTimer_CheckedChanged"
+                     Margin="110,0,0,0"/>
+
+        <!-- custom timers input fields-->
+        <Grid RowDefinitions="*,*"
+              ColumnDefinitions="*,*"
+              Name="CustomeTimerGrid"
+              IsVisible="false"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center">
+
+            <Label Grid.Row="0" Grid.Column="0"
+                   Content="Work Time in min"/>
+
+            <Label Grid.Row="0" Grid.Column="1"
+                   Content="Break Time in min"/>
+
+            <NumericUpDown Grid.Row="1" Grid.Column="0"
+                           Minimum="0"
+                           Maximum="300"
+                           Increment="5"
+                           Name="CustomeTimerWorkTime"
+                           MinWidth="120"
+                           Value="45"/>
+
+            <NumericUpDown Grid.Row="1" Grid.Column="1"
+                           Minimum="0"
+                           Maximum="300"
+                           Increment="5"
+                           Name="CustomeTimerBreakTime"
+                           MinWidth="120"
+                           Value="15"/>
+
+        </Grid>
+
+        <RadioButton Name="CountDown"
+                     Content="CountDownTimer"
+                     IsCheckedChanged="CountDownTimer_CheckedChanged"
+                     Margin="110,0,0,0"/>
+
+        <!-- CountDown timers input fields-->
+        <StackPanel Orientation="Horizontal"
+                    VerticalAlignment="Center"
                     HorizontalAlignment="Center"
-                    VerticalAlignment="Center">
+                    IsVisible="false"
+                    x:Name="CountDownTimeStackPanel">
 
-                    <Label Grid.Row="0" Grid.Column="0" Content="Work Time in min"/>
+            <Label Content="Work Time in min"
+                   VerticalAlignment="Center"/>
 
-                    <Label Grid.Row="0" Grid.Column="1" Content="Break Time in min"/>
+            <NumericUpDown Minimum="0"
+                           Maximum="300"
+                           Increment="5"
+                           Name="CountDownTimerWorkTime"
+                           MinWidth="120"
+                           Value="60"/>
 
-                    <NumericUpDown Grid.Row="1" Grid.Column="0" Minimum="0" Maximum="300" Increment="5" Name="CustomeTimerWorkTime"  MinWidth="120" Value="45"/>
+        </StackPanel>
 
-                    <NumericUpDown Grid.Row="1" Grid.Column="1" Minimum="0" Maximum="300" Increment="5" Name="CustomeTimerBreakTime"  MinWidth="120" Value="15"/>
+        <!--Start and continue buttons-->
+        <StackPanel Orientation="Horizontal"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
 
-                </Grid>
+            <Button Name="ContinueButton"
+                    Content="Continue"
+                    Margin="20"
+                    Click="Continue"
+                    IsVisible="false"/>
 
-                <RadioButton Name="CountDown" 
-                Content="CountDownTimer"
-                IsCheckedChanged="CountDownTimer_CheckedChanged"
-                Margin="110,0,0,0"/>
+            <Button Name="StartButton"
+                    Content="Start"
+                    Margin="20"
+                    Click="StartButton_Click"/>
 
-                <StackPanel Orientation = "Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="0" IsVisible = "false" x:Name="CountDownTimeStackPanel">
-                    <Label Content="Work Time in min" VerticalAlignment="Center"/>
-                    <NumericUpDown Minimum="0" Maximum="300" Increment="5" Name="CountDownTimerWorkTime"  MinWidth="120" Value="60"/>
-                </StackPanel>
+        </StackPanel>
 
+    </StackPanel>
 
-                <StackPanel Orientation = "Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="0">
-                    <Button Name="ContinueButton" Content="Continue" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20" Click="Continue" IsVisible = "false"/>
-                    <Button Name="StartButton" Content="Start" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20" Click="StartButton_Click"/>
-                </StackPanel>
-                
-                
+    <!-- Footer Overlay -->
+    <Border VerticalAlignment="Bottom"
+            HorizontalAlignment="Stretch"
+            Margin="10"
+            ZIndex="100">
 
-                <ToggleSwitch Name="Modes"
-                    OffContent="SimpleMode"
-                    OnContent="AdvanceMode"
-                    IsChecked="false"
-                    FlowDirection="RightToLeft"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Bottom"
-                    Margin="0,60,-10,0"
-                    IsCheckedChanged="Modes_IsCheckedChanged"/>
+        <Grid ColumnDefinitions="*,Auto">
 
+            <StackPanel>
+                <TextBlock Text="Version Prerelease 1.0"/>
+
+                <TextBlock Text="Github"
+                           Cursor="Hand"
+                           TextDecorations="Underline"
+                           PointerPressed="OpenLink"/>
             </StackPanel>
 
-             </TabItem>
-             <TabItem Header = "Custom" Name="tab2" Opacity="0" IsHitTestVisible = "false">
-             <ScrollViewer>
-                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="0">
-                    <TextBlock Text=" " HorizontalAlignment="Center" VerticalAlignment="Center" Width="400"/>
-                    <TextBlock FontSize="24" Text="Layout" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                    <TextBlock  Text="(To change Screen use Windows + Shirt + Arrows)" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                    <Grid RowDefinitions="*,*,*"
+            <ToggleSwitch Grid.Column="1"
+                          Name="Modes"
+                          OffContent="SimpleMode"
+                          OnContent="AdvanceMode"
+                          IsChecked="false"
+                          FlowDirection="RightToLeft"
+                          VerticalAlignment="Bottom"
+                          IsCheckedChanged="Modes_IsCheckedChanged"/>
+
+        </Grid>
+
+    </Border>
+
+</Grid>
+
+            </TabItem>
+            <TabItem Header = "Custom" 
+                Name="tab2" 
+                Opacity="0" 
+                IsHitTestVisible = "false">
+                <ScrollViewer>
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="0">
+
+
+                        <!-- Layout selection-->
+                        <TextBlock Text=" " 
+                        HorizontalAlignment="Center" 
+                        VerticalAlignment="Center" 
+                        Width="400"/>
+
+                        <TextBlock FontSize="24" 
+                        Text="Layout" 
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Center"/>
+
+                        <TextBlock Text="(To change Screen use Windows + Shirt + Arrows)" 
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Center"/>
+
+                        <Grid RowDefinitions="*,*,*"
                         ColumnDefinitions="*,*,*"
                         Name="LayoutButtons"
                         Width="240" Height="240"
                         HorizontalAlignment="Left">
-                        <Button  Grid.Row="0" Grid.Column="0" x:Name="TopLeft" Width="80" Height="80" Click="PositionButton_Click"> <TextBlock TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"> Top <LineBreak/> Left </TextBlock> </Button >
-                        <Button  Grid.Row="0" Grid.Column="1" x:Name="TopCenter" Content="Top" Width="80" Height="80" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="PositionButton_Click"/>
-                        <Button  Grid.Row="0" Grid.Column="2" x:Name="TopRight" Width="80" Height="80" Click="PositionButton_Click"> <TextBlock TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"> Top <LineBreak/> Right </TextBlock> </Button >
 
-                        <Button  Grid.Row="1" Grid.Column="0" x:Name="LeftCenter" Content="Left" Width="80" Height="80" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="PositionButton_Click"/>
-                        <Button  Grid.Row="1" Grid.Column="1" x:Name="Freemove" Width="80" Height="80"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="PositionButton_Click"> <TextBlock TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"> Free <LineBreak/> Move </TextBlock> </Button>
-                        <Button  Grid.Row="1" Grid.Column="2" x:Name="RightCenter" Content="Right" Width="80" Height="80" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="PositionButton_Click"/>
+                            <Button  Grid.Row="0" Grid.Column="0" x:Name="TopLeft" Width="80" Height="80" Click="PositionButton_Click"> <TextBlock TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"> Top <LineBreak/> Left </TextBlock> </Button >
+                            <Button  Grid.Row="0" Grid.Column="1" x:Name="TopCenter" Content="Top" Width="80" Height="80" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="PositionButton_Click"/>
+                            <Button  Grid.Row="0" Grid.Column="2" x:Name="TopRight" Width="80" Height="80" Click="PositionButton_Click"> <TextBlock TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"> Top <LineBreak/> Right </TextBlock> </Button >
 
-                        <Button  Grid.Row="2" Grid.Column="0" x:Name="BottomLeft" Width="80" Height="80" Click="PositionButton_Click"> <TextBlock TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"> Bottom <LineBreak/> Left </TextBlock> </Button >
-                        <Button  Grid.Row="2" Grid.Column="1" x:Name="BottomCenter" Content="Bottom" Width="80" Height="80"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="PositionButton_Click"/>
-                        <Button  Grid.Row="2" Grid.Column="2" x:Name="BottomRight" Width="80" Height="80" Click="PositionButton_Click"> <TextBlock TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"> Bottom <LineBreak/> Right </TextBlock> </Button >
-                    </Grid>
-                
-                <TextBlock Text=" " HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBlock Text="Special Timers" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="24"/>
+                            <Button  Grid.Row="1" Grid.Column="0" x:Name="LeftCenter" Content="Left" Width="80" Height="80" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="PositionButton_Click"/>
+                            <Button  Grid.Row="1" Grid.Column="1" x:Name="Freemove" Width="80" Height="80"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="PositionButton_Click"> <TextBlock TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"> Free <LineBreak/> Move </TextBlock> </Button>
+                            <Button  Grid.Row="1" Grid.Column="2" x:Name="RightCenter" Content="Right" Width="80" Height="80" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="PositionButton_Click"/>
 
-                <ToggleSwitch Name="TwentyTwentyTwentyTimer" OffContent="20/20/20 Timer" OnContent="20/20/20 Timer"/>
-                <ToggleSwitch Name="_30_30rule" OffContent="30-30 rule Timer" OnContent="30-30 rule Timer"/>
+                            <Button  Grid.Row="2" Grid.Column="0" x:Name="BottomLeft" Width="80" Height="80" Click="PositionButton_Click"> <TextBlock TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"> Bottom <LineBreak/> Left </TextBlock> </Button >
+                            <Button  Grid.Row="2" Grid.Column="1" x:Name="BottomCenter" Content="Bottom" Width="80" Height="80"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="PositionButton_Click"/>
+                            <Button  Grid.Row="2" Grid.Column="2" x:Name="BottomRight" Width="80" Height="80" Click="PositionButton_Click"> <TextBlock TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"> Bottom <LineBreak/> Right </TextBlock> </Button >
+                        </Grid>
 
+                        <!--special timers-->
+                        <TextBlock Text=" " 
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Center"/>
 
-                <TextBlock Text=" " HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="Special Timers" 
+                            HorizontalAlignment="Left" 
+                            VerticalAlignment="Center" 
+                            FontSize="24"/>
 
-                <TextBlock Text="Colors" HorizontalAlignment="Left" FontSize="24"/>
-                    <StackPanel Orientation = "Horizontal" VerticalAlignment="Center"  Spacing="0" HorizontalAlignment="Stretch">
-                        <Label Content="ColorCode : " VerticalAlignment="Center"/>
-                <ComboBox SelectedIndex="0"
-                        MaxDropDownHeight="100"
-                        Name="ColorSelect"
-                        PointerPressed="conbo_PointerPressed"
-                        SelectionChanged="ChangeColor_Click">
-                    <x:String>White</x:String>
-                    <x:String>Blue</x:String>
-                    <x:String>Red</x:String>
-                    <x:String>Green</x:String>
-                    <x:String>Purple</x:String>
-                    <x:String>Costom</x:String>
-                </ComboBox>
-                
-                
-            </StackPanel>
+                        <ToggleSwitch Name="TwentyTwentyTwentyTimer" 
+                            OffContent="20/20/20 Timer" 
+                            OnContent="20/20/20 Timer"/>
 
-            <TextBlock Text=" " HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
-             <Grid RowDefinitions="*,*,*"
-                ColumnDefinitions="*,*"
-                Name="CustomeColorGrid"
-                IsVisible = "false"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center">
-
-                <Label Grid.Row="0" Grid.Column="0" Content="Primary"/>
-
-                <Label Grid.Row="0" Grid.Column="1" Content="Secondary"/>
-
-                <TextBox Name="CostumePrimary" Grid.Row="1" Grid.Column="0"   MinWidth="120"/>
-
-                <TextBox Name="CostumeSecondary" Grid.Row="1" Grid.Column="1" MinWidth="120"/>
-
-                <Button Grid.Row="2" Grid.Column="0" Name="PickColor" Content="PickColor" Click="PickColor_click" />
-
-            </Grid>
-
-                <TextBlock Text=" " HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBlock Text="Miscellaneous" HorizontalAlignment="Left" FontSize="24"/>
-                <ToggleSwitch Name="WorkTimeShow" OffContent="Work Time Show" OnContent="Work Time Show" IsChecked="true"/>
+                        <ToggleSwitch Name="_30_30rule" 
+                            OffContent="30-30 rule Timer" 
+                            OnContent="30-30 rule Timer"/>
 
 
-                <TextBlock Text=" " HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBlock Text="Sounds" HorizontalAlignment="Left" FontSize="24"/>
+                        <!--colors area-->
+                        <TextBlock Text=" " 
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Center"/>
 
-                <ComboBox SelectedIndex="0"
-                        MaxDropDownHeight="100"
-                        Name="SoundSelector"
-                        PointerPressed="conbo_PointerPressed"
-                        SelectionChanged="SoundSelector_SelectionChanged"
-                        AutoScrollToSelectedItem="False">
-                    <x:String>ConsoleBeep</x:String>
-                    <x:String>UploadAudio</x:String>
-                </ComboBox>
-                <Button Name="NewAudioFile" Content="NewAudioFile" HorizontalAlignment="Left" Margin="20" Click="SaveFileButton_Clicked" IsVisible="False"/>
+                        <TextBlock Text="Colors" 
+                            HorizontalAlignment="Left" 
+                            FontSize="24"/>
+
+                        <StackPanel Orientation = "Horizontal" 
+                            VerticalAlignment="Center"  
+                            Spacing="0" 
+                            HorizontalAlignment="Stretch">
+
+                            <Label Content="ColorCode : " 
+                                VerticalAlignment="Center"/>
+
+                            <ComboBox SelectedIndex="0"
+                                MaxDropDownHeight="100"
+                                Name="ColorSelect"
+                                PointerPressed="conbo_PointerPressed"
+                                SelectionChanged="ChangeColor_Click">
+                                <x:String>White</x:String>
+                                <x:String>Blue</x:String>
+                                <x:String>Red</x:String>
+                                <x:String>Green</x:String>
+                                <x:String>Purple</x:String>
+                                <x:String>Costom</x:String>
+                            </ComboBox>
 
 
-                <TextBlock Text=" " HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBlock Text=" " HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </StackPanel>
+                        </StackPanel>
+
+                        <TextBlock Text=" " 
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Center"/>
+
+                        <!-- costum colors area -->
+                        <Grid RowDefinitions="*,*,*"
+                            ColumnDefinitions="*,*"
+                            Name="CustomeColorGrid"
+                            IsVisible = "false"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center">
+
+                            <Label Grid.Row="0" Grid.Column="0" 
+                            Content="Primary"/>
+
+                            <Label Grid.Row="0" Grid.Column="1" 
+                            Content="Secondary"/>
+
+                            <TextBox Name="CostumePrimary" 
+                            Grid.Row="1" Grid.Column="0"   
+                            MinWidth="120"/>
+
+                            <TextBox Name="CostumeSecondary" 
+                            Grid.Row="1" Grid.Column="1" 
+                            MinWidth="120"/>
+
+                            <Button Grid.Row="2" Grid.Column="0" 
+                            Name="PickColor" 
+                            Content="PickColor" 
+                            Click="PickColor_click" />
+
+                        </Grid>
+                        <!--Miscellaneous -->
+                        <TextBlock Text=" " 
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Center"/>
+
+                        <TextBlock Text="Miscellaneous" 
+                            HorizontalAlignment="Left" 
+                            FontSize="24"/>
+
+                        <ToggleSwitch Name="WorkTimeShow" 
+                            OffContent="Work Time Show" 
+                            OnContent="Work Time Show" 
+                            IsChecked="true"/>
+
+                        <!--Sound-->
+                        <TextBlock Text=" " 
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Center"/>
+
+                        <TextBlock Text="Sounds" 
+                            HorizontalAlignment="Left" 
+                            FontSize="24"/>
+
+                        <ComboBox SelectedIndex="0"
+                            MaxDropDownHeight="100"
+                            Name="SoundSelector"
+                            PointerPressed="conbo_PointerPressed"
+                            SelectionChanged="SoundSelector_SelectionChanged"
+                            AutoScrollToSelectedItem="False">
+                            <x:String>ConsoleBeep</x:String>
+                            <x:String>UploadAudio</x:String>
+                        </ComboBox>
+
+                        <Button Name="NewAudioFile" 
+                            Content="NewAudioFile" 
+                            HorizontalAlignment="Left" 
+                            Margin="20" 
+                            Click="SaveFileButton_Clicked" 
+                            IsVisible="False"/>
 
 
+                        <TextBlock Text=" " 
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Center"/>
 
+                        <TextBlock Text=" " 
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Center"/>
+                    </StackPanel>
 
-
-                
                 </ScrollViewer>
-             </TabItem>
-    </TabControl>
-<Button DockPanel.Dock="Right"
-        VerticalAlignment="Top"
-        Classes="ExitButton"
-        Margin="-65,4.5,0,0"
-        Width="49"
-        Height="49"
-        HorizontalContentAlignment="Center"
-        VerticalContentAlignment="Center"
-        Padding="0"
-        Click="Exit_Click"
-        CornerRadius="1">
 
-    <Viewbox Width="35" Height="35">
-        <Path Data="M0 0 L20 20 M20 0 L0 20"
-              Stroke="{DynamicResource Primary}"
-              StrokeThickness="2"
-              StrokeLineCap="Round"/>
-    </Viewbox>
-</Button>
+            </TabItem>
 
+        </TabControl>
+        
+        <!--exit/close button-->
+        <Button DockPanel.Dock="Right"
+            VerticalAlignment="Top"
+            Classes="ExitButton"
+            Margin="-65,4.5,0,0"
+            Width="49"
+            Height="49"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Padding="0"
+            Click="Exit_Click"
+            CornerRadius="1">
 
-
+        <Viewbox Width="35" Height="35">
+            <Path Data="M0 0 L20 20 M20 0 L0 20"
+                Stroke="{DynamicResource Primary}"
+                StrokeThickness="2"
+                StrokeLineCap="Round"/>
+            </Viewbox>
+        </Button>
 
     </DockPanel>
 

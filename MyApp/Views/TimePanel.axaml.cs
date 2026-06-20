@@ -1,5 +1,3 @@
-//dotnet publish -c Release -p:PublishSingleFile=true -p:SelfContained=true -p:PublishTrimmed=true -p:DebugSymbols=false -p:DebugType=none
-
 using System;
 using System.Collections.Generic;
 using Avalonia;
@@ -7,8 +5,6 @@ using Avalonia.Controls;
 using Avalonia.Threading;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
-using System.Runtime.InteropServices;
-using System.Diagnostics;
 using System.IO;
 using NAudio.Wave;
 using Avalonia.Input;
@@ -20,48 +16,9 @@ namespace MyApp.Views;
 
 public partial class TimePanel : Window
 {
-    #region PreventSleep
-    //this is for the pc not going to sleep while using the timer
-    [DllImport("kernel32.dll")]
-    private static extern uint SetThreadExecutionState(uint esFlags);
 
-    private const uint ES_CONTINUOUS = 0x80000000;
-    private const uint ES_SYSTEM_REQUIRED = 0x00000001;
+    
 
-    private Process? _caffeinateProcess;
-
-    public void DontSleep()
-    {
-        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-        {
-            SetThreadExecutionState(
-                ES_CONTINUOUS | ES_SYSTEM_REQUIRED);
-        }
-        else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-        {
-            if (_caffeinateProcess == null)
-            {
-                _caffeinateProcess = Process.Start("caffeinate");
-            }
-        }
-    }
-
-    public void EnableSleep()
-    {
-        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-        {
-            SetThreadExecutionState(ES_CONTINUOUS);
-        }
-        else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-        {
-            _caffeinateProcess?.Kill();
-            _caffeinateProcess?.Dispose();
-            _caffeinateProcess = null;
-        }
-    }
-    #endregion
-
-    #region Setup of timer
     DispatcherTimer timer;
 
     public List<ClassicTimer> timers = new();   
@@ -70,13 +27,19 @@ public partial class TimePanel : Window
     private bool _menuOpen = false;
 
 
+    /// <summary>
+    /// creation of the timer window
+    /// </summary>
+    /// <param name="presets"></param>
+    /// <param name="LayoutPoint"></param>
+    /// <param name="showerTimer"></param>
+    /// <param name="audioSetting"></param>
     public TimePanel(List<ClassicTimerPreset> presets, string LayoutPoint, bool showerTimer, ClassicTimer.AudioSetting audioSetting)
     {
 
 
         InitializeComponent();
 
-        DontSleep();
         this.Opened += (_, __) => SetPosition(LayoutPoint); 
 
         timer = new DispatcherTimer();
@@ -181,6 +144,10 @@ public partial class TimePanel : Window
 
 
     }
+    /// <summary>
+    /// function for placing the timer 
+    /// </summary>
+    /// <param name="layoutPoint"></param>
     private void SetPosition(string layoutPoint)
     {
         var screen = Screens.ScreenFromVisual(this) ?? Screens.Primary;
@@ -244,11 +211,15 @@ public partial class TimePanel : Window
 
         Position = new PixelPoint(x, y);
     }
-    #endregion
-
-    #region Functions for timer ui
+  
 
 
+
+    /// <summary>
+    /// button for going back to start menu
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     public void Back_Click(object? sender, RoutedEventArgs e)
     {
 
@@ -261,7 +232,6 @@ public partial class TimePanel : Window
         }
 
         mainWindow.ContinueButton.IsVisible = true;
-        EnableSleep();
         timer.Stop();
         mainWindow.Show();
         this.Close();
@@ -270,19 +240,16 @@ public partial class TimePanel : Window
     private MenuItem pauseItem;
     bool isPaused = true;
 
+    /// <summary>
+    /// the button click for pausing the timer 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     public void Pause_Click(object? sender, RoutedEventArgs e)
     {
         isPaused = !isPaused;
         pauseItem.Header = isPaused ? "Paused" : "Resume";
 
-        if (isPaused)
-        {
-            EnableSleep();
-        }
-        else
-        {
-            DontSleep();
-        }
         
 
         foreach (ClassicTimer timer in timers)
@@ -290,9 +257,14 @@ public partial class TimePanel : Window
             timer.Pause();
         }
     }
-    #endregion
+
 
     bool Moveable = false;
+    /// <summary>
+    /// function that always you to drag windown when option is on 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void Window_PointerPressed(object? sender, PointerPressedEventArgs e)
     {
         if (e.GetCurrentPoint(this).Properties.IsLeftButtonPressed && Moveable)
@@ -303,29 +275,42 @@ public partial class TimePanel : Window
 }
 public class ClassicTimer
 {
-    #region Setup of timer
+
     public string Name;
     bool showTimer;
 
     private WaveOutEvent outputDevice;
     private AudioFileReader audioFile;
     private bool _isPlaying;
+    /// <summary>
+    /// Creates all the right timers and the button in timer panel
+    /// </summary>
+    /// <param name="workTimeSet"></param>
+    /// <param name="breakTimeSet"></param>
+    /// <param name="needToBreakButton"></param>
+    /// <param name="needBackToWorkButton"></param>
+    /// <param name="name"></param>
+    /// <param name="timerPanel"></param>
+    /// <param name="showTimer"></param>
+    /// <param name="audioSetting"></param>
     public ClassicTimer(int workTimeSet, int breakTimeSet, bool needToBreakButton, bool needBackToWorkButton, string name, StackPanel timerPanel, bool showTimer, AudioSetting audioSetting)
 {
     //audio setup
+
+
     string filePath = Path.Combine(
-        AppContext.BaseDirectory,
-        "Audio",
-        "CurrentTrack.mp3");
+    AppContext.BaseDirectory,
+    "Audio",
+    "CurrentTrack.mp3");
 
-    audioFile = new AudioFileReader(filePath);
+    if (File.Exists(filePath))
+    {
+        audioFile = new AudioFileReader(filePath);
 
-    //makes a outputDevice and gives it a file
-    outputDevice = new WaveOutEvent();
-    outputDevice.Init(audioFile);
-
-    //makes a functiunc run when audio is done
-    outputDevice.PlaybackStopped += OnPlaybackStopped;
+        outputDevice = new WaveOutEvent();
+        outputDevice.Init(audioFile);
+        outputDevice.PlaybackStopped += OnPlaybackStopped;
+    }
     this.audioSetting = audioSetting;
 
 
@@ -380,8 +365,8 @@ public class ClassicTimer
 
     }
 }
-#endregion
-    public enum AudioSetting
+
+    public enum AudioSetting //variable for the timer to know which sounds it should use
     {
         ConsoleBeep,
         CustomeSound
@@ -399,7 +384,7 @@ public class ClassicTimer
 
     public int Time;
 
-    #region Timerstates
+
     public enum ClassicTimerState //Enum for Time states to DeepWork timer
     {
         Work,
@@ -411,7 +396,9 @@ public class ClassicTimer
     ClassicTimerState WorkTimerState = ClassicTimerState.Work; // DeepWork timer state variable
     bool ClassicAktiv = false; // Variable to track if the deep work break is active
     
-
+    /// <summary>
+    /// this is for stateMachine for the timer
+    /// </summary>
     public void ClassicWorkUpdateSection()
     {
         switch (WorkTimerState)
@@ -481,10 +468,11 @@ public class ClassicTimer
         }
         
     }
-    #endregion
-    
-    #region TimerFunctions
 
+
+    /// <summary>
+    /// this is the Timer function
+    /// </summary>
     public void WorktimeUpdate() 
     {
         if (pauseBool)
@@ -497,12 +485,21 @@ public class ClassicTimer
         }
 
     }
+
+
+
     bool pauseBool = true;
+    /// <summary>
+    /// this is the pause function for the timer
+    /// </summary>
     public void Pause()
     {
         pauseBool = !pauseBool;
     }
 
+    /// <summary>
+    /// function for updation the timer and all its logic
+    /// </summary>
     public void WorkUpdateTimerText(int text)
     {
         int hours = text / 3600;
@@ -542,13 +539,18 @@ public class ClassicTimer
         
     }
 
+    /// <summary>
+    /// Button for going on brea
+    /// </summary>
     public void BreakButton_Click(object? sender, RoutedEventArgs e)
     {
 
         BreakButton_Click();
     }
 
-
+    /// <summary>
+    /// function to go on break
+    /// </summary>
     public void BreakButton_Click()
     {
         WorkTimerState = ClassicTimerState.BreakTime;
@@ -556,12 +558,17 @@ public class ClassicTimer
     }
 
 
-
+    /// <summary>
+    /// Button to go back to work
+    /// </summary>
     public void BackToWork_Click(object? sender, RoutedEventArgs e)
     {
         BackToWork_Click();
     }
 
+    /// <summary>
+    /// function to go back to work
+    /// </summary>
     public void BackToWork_Click()
     {   
         WorkTimerState = ClassicTimerState.Work;
@@ -576,7 +583,9 @@ public class ClassicTimer
 
     }
 
-
+    /// <summary>
+    /// this continuously plays sound when break is done
+    /// </summary>
     public void BreakDoneSound()
     {
         switch (audioSetting)
@@ -604,13 +613,18 @@ public class ClassicTimer
     }
 
     //this runs when the sound is done
+    /// <summary>
+    /// this function is used to make sure sounds dont restart if it is called more then ones 
+    /// </summary>
     private void OnPlaybackStopped(object? sender, StoppedEventArgs e)
     {
         _isPlaying = false;
     }
 
     
-
+/// <summary>
+/// Playes the sounds when Work is done
+/// </summary>
     public void WorkDoneSound()
     {   
         switch (audioSetting)
@@ -632,5 +646,5 @@ public class ClassicTimer
 
     }
 
-    #endregion
+
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "g7wmBxL2D4E=",
+  "dgSpecHash": "HRC1v9R9Y18=",
   "success": true,
-  "projectFilePath": "D:\\CleanerVersion\\MyApp\\MyApp.csproj",
+  "projectFilePath": "D:\\SimplyGreatTimer\\myapp\\MyApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\victo\\.nuget\\packages\\avalonia\\12.0.4\\avalonia.12.0.4.nupkg.sha512",
     "C:\\Users\\victo\\.nuget\\packages\\avalonia.angle.windows.natives\\2.1.27548.20260419\\avalonia.angle.windows.natives.2.1.27548.20260419.nupkg.sha512",
@@ -40,7 +40,10 @@
     "C:\\Users\\victo\\.nuget\\packages\\skiasharp.nativeassets.macos\\3.119.4\\skiasharp.nativeassets.macos.3.119.4.nupkg.sha512",
     "C:\\Users\\victo\\.nuget\\packages\\skiasharp.nativeassets.webassembly\\3.119.4\\skiasharp.nativeassets.webassembly.3.119.4.nupkg.sha512",
     "C:\\Users\\victo\\.nuget\\packages\\skiasharp.nativeassets.win32\\3.119.4\\skiasharp.nativeassets.win32.3.119.4.nupkg.sha512",
-    "C:\\Users\\victo\\.nuget\\packages\\tmds.dbus.protocol\\0.92.0\\tmds.dbus.protocol.0.92.0.nupkg.sha512"
+    "C:\\Users\\victo\\.nuget\\packages\\tmds.dbus.protocol\\0.92.0\\tmds.dbus.protocol.0.92.0.nupkg.sha512",
+    "C:\\Users\\victo\\.nuget\\packages\\microsoft.netcore.app.runtime.osx-x64\\10.0.0-rc.2.25502.107\\microsoft.netcore.app.runtime.osx-x64.10.0.0-rc.2.25502.107.nupkg.sha512",
+    "C:\\Users\\victo\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.osx-x64\\10.0.0-rc.2.25502.107\\microsoft.aspnetcore.app.runtime.osx-x64.10.0.0-rc.2.25502.107.nupkg.sha512",
+    "C:\\Users\\victo\\.nuget\\packages\\microsoft.netcore.app.host.osx-x64\\10.0.0-rc.2.25502.107\\microsoft.netcore.app.host.osx-x64.10.0.0-rc.2.25502.107.nupkg.sha512"
   ],
   "logs": []
 }

@@ -12,6 +12,7 @@
 
     <!-- Global resources -->
     <Application.Resources>
+        <!-- the two colores used -->
         <SolidColorBrush x:Key="Primary">White</SolidColorBrush>
         <SolidColorBrush x:Key="Secondary ">White</SolidColorBrush>
     </Application.Resources>
@@ -19,85 +20,84 @@
     <!-- GLOBAL STYLES -->
     <Application.Styles>
 
-        <!-- Theme MUST come first -->
-        <FluentTheme />
+    <!-- Theme MUST come first -->
+    <FluentTheme />
 
-        <!-- all text blocks color--> 
-        <Style Selector="TextBlock">
-            <Setter Property="Foreground" Value="{DynamicResource  Primary}" />
-        </Style>
+    <!-- all text blocks color--> 
+    <Style Selector="TextBlock">
+        <Setter Property="Foreground" Value="{DynamicResource  Primary}" />
+    </Style>
 
-        <!-- RadioButton text color-->
-        <Style Selector="RadioButton">
-            <Setter Property="Foreground" Value="{DynamicResource  Primary}" />
-        </Style>
+    <!-- RadioButton text color-->
+    <Style Selector="RadioButton">
+        <Setter Property="Foreground" Value="{DynamicResource  Primary}" />
+    </Style>
 
-        <!-- outline for NumericUpDown-->
-        <Style Selector="controls|NumericUpDown">
-            <Setter Property="BorderBrush" Value="{DynamicResource  Primary}"/>
-        </Style>
-
-
-
-         <Style Selector="Button">
-            <Setter Property="Foreground" Value="{DynamicResource  Primary}"/>
-        </Style> 
-
-        <!--hover over button-->
-        <Style Selector="Button:pointerover /template/ ContentPresenter">
-            <Setter Property="TextBlock.Foreground" Value="{DynamicResource  Primary}"/>
-        </Style>
-
-        <!--press button-->
-        <Style Selector="Button:pressed /template/ ContentPresenter">
-            <Setter Property="TextBlock.Foreground" Value="{DynamicResource  Primary}"/>
-        </Style>
+    <!-- outline for NumericUpDown-->
+    <Style Selector="controls|NumericUpDown">
+        <Setter Property="BorderBrush" Value="{DynamicResource  Primary}"/>
+    </Style>
 
 
-        <!-- MenuItem button normal-->
-        <Style Selector="MenuItem /template/ ContentPresenter">
-            <Setter Property="Foreground" Value="{DynamicResource  Primary}"/>
-        </Style>
+    <!-- buttons-->
+    <Style Selector="Button">
+        <Setter Property="Foreground" Value="{DynamicResource  Primary}"/>
+    </Style> 
 
-        <!-- MenuItem button press-->
-        <Style Selector="MenuItem:pointerover /template/ ContentPresenter">
-            <Setter Property="Foreground" Value="{DynamicResource  Primary}"/>
-        </Style>
+    <!--hover over button-->
+    <Style Selector="Button:pointerover /template/ ContentPresenter">
+        <Setter Property="TextBlock.Foreground" Value="{DynamicResource  Primary}"/>
+    </Style>
 
-        <!-- MenuItem button hover Background-->
-        <Style Selector="MenuItem:pointerover /template/ Border">
-            <Setter Property="Background" Value="#E6000000"/>
-        </Style>
-
-        <!-- MenuItem button press Background-->
-        <Style Selector="MenuItem:pressed /template/ Border">
-            <Setter Property="Background" Value="Black"/>
-        </Style>
+    <!--press button-->
+    <Style Selector="Button:pressed /template/ ContentPresenter">
+        <Setter Property="TextBlock.Foreground" Value="{DynamicResource  Primary}"/>
+    </Style>
 
 
-        <!-- color labels-->
-        <Style Selector="Label">
-            <Setter Property="Foreground" Value="{DynamicResource  Primary}"/>
-        </Style>
+    <!-- MenuItem button normal-->
+    <Style Selector="MenuItem /template/ ContentPresenter">
+        <Setter Property="Foreground" Value="{DynamicResource  Primary}"/>
+    </Style>
+
+    <!-- MenuItem button press-->
+    <Style Selector="MenuItem:pointerover /template/ ContentPresenter">
+        <Setter Property="Foreground" Value="{DynamicResource  Primary}"/>
+    </Style>
+
+    <!-- MenuItem button hover Background-->
+    <Style Selector="MenuItem:pointerover /template/ Border">
+        <Setter Property="Background" Value="#E6000000"/>
+    </Style>
+
+    <!-- MenuItem button press Background-->
+    <Style Selector="MenuItem:pressed /template/ Border">
+        <Setter Property="Background" Value="Black"/>
+    </Style>
+
+
+    <!-- color labels-->
+    <Style Selector="Label">
+        <Setter Property="Foreground" Value="{DynamicResource  Primary}"/>
+    </Style>
 
 
 
-<!-- normal tab -->
-<Style Selector="TabItem">
-    <Setter Property="Foreground" Value="{DynamicResource Primary}"/>
-</Style>
+    <!-- normal tab -->
+    <Style Selector="TabItem">
+        <Setter Property="Foreground" Value="{DynamicResource Primary}"/>
+    </Style>
 
-<!-- selected tab ONLY -->
-<Style Selector="TabItem:selected">
-    <Setter Property="Foreground" Value="{DynamicResource Primary}"/>
-    <Setter Property="BorderBrush" Value="{DynamicResource Primary}"/>
-    <Setter Property="BorderThickness" Value="0 0 0 3"/>
-    <Setter Property="Background" Value="#E6424242"/>
-</Style>
-
-<Style Selector="TabItem /template/ Border#SelectionIndicator">
-    <Setter Property="Background" Value="Transparent"/>
-</Style>
+    <!-- selected tab seleceted  -->
+    <Style Selector="TabItem:selected">
+        <Setter Property="Foreground" Value="{DynamicResource Primary}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource Primary}"/>
+        <Setter Property="BorderThickness" Value="0 0 0 3"/>
+        <Setter Property="Background" Value="#E6424242"/>
+    </Style>
+    <Style Selector="TabItem /template/ Border#SelectionIndicator">
+        <Setter Property="Background" Value="Transparent"/>
+    </Style>
 
 
 
@@ -113,18 +113,19 @@
         <Setter Property="Stroke" Value="{DynamicResource Secondary}" />
     </Style>
 
-<!-- exit-->
-<Style Selector="Button.ExitButton">
-    <Setter Property="Background" Value="#3FFFFFFF"/>
-    <Setter Property="BorderBrush" Value="Transparent"/>
-    <Setter Property="Foreground" Value="{DynamicResource  Primary}"/>
-    <Setter Property="FontSize" Value="40"/>
-    <Setter Property="Padding" Value="0"/>
-</Style>
+    <!-- exit button-->
+    <Style Selector="Button.ExitButton">
+        <Setter Property="Background" Value="#3FFFFFFF"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{DynamicResource  Primary}"/>
+        <Setter Property="FontSize" Value="40"/>
+        <Setter Property="Padding" Value="0"/>
+    </Style>
 
-<Style Selector="TabItem:selected /template/ Border#PART_SelectedPipe">
-    <Setter Property="Background" Value="Transparent"/>
-</Style>
+    <!--Tabitem Selected line -->
+    <Style Selector="TabItem:selected /template/ Border#PART_SelectedPipe">
+        <Setter Property="Background" Value="Transparent"/>
+    </Style>
 
 
 
