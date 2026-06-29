@@ -1,4 +1,4 @@
-name: Windows Release (Installer)
+name: Windows Installer
 
 on:
   push:
@@ -10,9 +10,11 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-dotnet@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
 
@@ -28,9 +30,12 @@ jobs:
       - name: Build installer
         run: iscc installer.iss
 
-      - name: Upload Release
+      - name: Show output (DEBUG)
+        run: dir Output
+
+      - name: Upload installer
         uses: softprops/action-gh-release@v2
         with:
-          files: Output/SimplyGreatTimer-Setup.exe
+          files: Output/*.exe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
