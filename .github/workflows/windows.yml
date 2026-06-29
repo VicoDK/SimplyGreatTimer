@@ -16,13 +16,21 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: "10.0.x"
 
       - name: Restore
-        run: dotnet restore
+        run: dotnet restore MyApp/MyApp.csproj
 
       - name: Publish
-        run: dotnet publish -c Release -r win-x64 --self-contained true
+        run: dotnet publish MyApp/MyApp.csproj -c Release -r win-x64 --self-contained true -o publish
+
+      - name: Verify publish output
+        run: |
+          dir publish
+          if (-not (Test-Path "publish/SimplyGreatTimer.exe")) {
+            Write-Error "Publish failed: publish/SimplyGreatTimer.exe not found"
+            exit 1
+          }
 
       - name: Install Inno Setup
         run: choco install innosetup -y
@@ -30,12 +38,17 @@ jobs:
       - name: Build installer
         run: iscc installer.iss
 
-      - name: Show output (DEBUG)
-        run: dir Output
+      - name: Verify installer output (DEBUG)
+        run: |
+          dir Output
+          if (-not (Test-Path "Output/SimplyGreatTimer-Setup.exe")) {
+            Write-Error "Installer build failed: Output/SimplyGreatTimer-Setup.exe not found"
+            exit 1
+          }
 
       - name: Upload installer
         uses: softprops/action-gh-release@v2
         with:
-          files: Output/*.exe
+          files: Output/SimplyGreatTimer-Setup.exe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
