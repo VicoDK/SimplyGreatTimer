@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 3,
   "targets": {
     "net10.0": {
       "Avalonia/12.0.4": {
@@ -318,16 +318,17 @@
           "Microsoft.IO.RecyclableMemoryStream": "3.0.1"
         },
         "compile": {
-          "lib/net10.0/_._": {}
+          "lib/net10.0/AvaloniaUI.DiagnosticsSupport.Avalonia.dll": {}
         },
         "runtime": {
-          "lib/net10.0/_._": {}
+          "lib/net10.0/AvaloniaUI.DiagnosticsSupport.Avalonia.dll": {}
         },
         "build": {
-          "buildTransitive/_._": {}
+          "buildTransitive/AvaloniaUI.DiagnosticsSupport.props": {},
+          "buildTransitive/AvaloniaUI.DiagnosticsSupport.targets": {}
         },
         "buildMultiTargeting": {
-          "buildMultiTargeting/_._": {}
+          "buildMultiTargeting/AvaloniaUI.DiagnosticsSupport.props": {}
         }
       },
       "CommunityToolkit.Mvvm/8.4.1": {
@@ -493,12 +494,12 @@
       "Microsoft.Extensions.DependencyInjection.Abstractions/8.0.0": {
         "type": "package",
         "compile": {
-          "lib/net8.0/_._": {
+          "lib/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net8.0/_._": {
+          "lib/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
             "related": ".xml"
           }
         },
@@ -512,28 +513,28 @@
           "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0"
         },
         "compile": {
-          "lib/net8.0/_._": {
+          "lib/net8.0/Microsoft.Extensions.Logging.Abstractions.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net8.0/_._": {
+          "lib/net8.0/Microsoft.Extensions.Logging.Abstractions.dll": {
             "related": ".xml"
           }
         },
         "build": {
-          "buildTransitive/net6.0/_._": {}
+          "buildTransitive/net6.0/Microsoft.Extensions.Logging.Abstractions.targets": {}
         }
       },
       "Microsoft.IO.RecyclableMemoryStream/3.0.1": {
         "type": "package",
         "compile": {
-          "lib/net6.0/_._": {
+          "lib/net6.0/Microsoft.IO.RecyclableMemoryStream.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net6.0/_._": {
+          "lib/net6.0/Microsoft.IO.RecyclableMemoryStream.dll": {
             "related": ".xml"
           }
         }
@@ -774,620 +775,6 @@
             "assetType": "native",
             "rid": "win-x86"
           }
-        }
-      },
-      "Tmds.DBus.Protocol/0.92.0": {
-        "type": "package",
-        "compile": {
-          "lib/net9.0/Tmds.DBus.Protocol.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net9.0/Tmds.DBus.Protocol.dll": {
-            "related": ".xml"
-          }
-        }
-      }
-    },
-    "net10.0/osx-arm64": {
-      "Avalonia/12.0.4": {
-        "type": "package",
-        "dependencies": {
-          "Avalonia.BuildServices": "11.3.2",
-          "Avalonia.Remote.Protocol": "12.0.4",
-          "MicroCom.Runtime": "0.11.4"
-        },
-        "compile": {
-          "ref/net10.0/Avalonia.Base.dll": {
-            "related": ".xml"
-          },
-          "ref/net10.0/Avalonia.Controls.dll": {
-            "related": ".xml"
-          },
-          "ref/net10.0/Avalonia.DesignerSupport.dll": {
-            "related": ".xml"
-          },
-          "ref/net10.0/Avalonia.Dialogs.dll": {
-            "related": ".xml"
-          },
-          "ref/net10.0/Avalonia.Markup.Xaml.dll": {
-            "related": ".xml"
-          },
-          "ref/net10.0/Avalonia.Markup.dll": {
-            "related": ".Xaml.xml;.xml"
-          },
-          "ref/net10.0/Avalonia.Metal.dll": {
-            "related": ".xml"
-          },
-          "ref/net10.0/Avalonia.MicroCom.dll": {
-            "related": ".xml"
-          },
-          "ref/net10.0/Avalonia.OpenGL.dll": {
-            "related": ".xml"
-          },
-          "ref/net10.0/Avalonia.Vulkan.dll": {
-            "related": ".xml"
-          },
-          "ref/net10.0/Avalonia.dll": {
-            "related": ".Base.xml;.Controls.xml;.DesignerSupport.xml;.Dialogs.xml;.Markup.Xaml.xml;.Markup.xml;.Metal.xml;.MicroCom.xml;.OpenGL.xml;.Vulkan.xml;.xml"
-          }
-        },
-        "runtime": {
-          "lib/net10.0/Avalonia.Base.dll": {
-            "related": ".xml"
-          },
-          "lib/net10.0/Avalonia.Controls.dll": {
-            "related": ".xml"
-          },
-          "lib/net10.0/Avalonia.DesignerSupport.dll": {
-            "related": ".xml"
-          },
-          "lib/net10.0/Avalonia.Dialogs.dll": {
-            "related": ".xml"
-          },
-          "lib/net10.0/Avalonia.Markup.Xaml.dll": {
-            "related": ".xml"
-          },
-          "lib/net10.0/Avalonia.Markup.dll": {
-            "related": ".Xaml.xml;.xml"
-          },
-          "lib/net10.0/Avalonia.Metal.dll": {
-            "related": ".xml"
-          },
-          "lib/net10.0/Avalonia.MicroCom.dll": {
-            "related": ".xml"
-          },
-          "lib/net10.0/Avalonia.OpenGL.dll": {
-            "related": ".xml"
-          },
-          "lib/net10.0/Avalonia.Vulkan.dll": {
-            "related": ".xml"
-          },
-          "lib/net10.0/Avalonia.dll": {
-            "related": ".Base.xml;.Controls.xml;.DesignerSupport.xml;.Dialogs.xml;.Markup.Xaml.xml;.Markup.xml;.Metal.xml;.MicroCom.xml;.OpenGL.xml;.Vulkan.xml;.xml"
-          }
-        },
-        "build": {
-          "buildTransitive/Avalonia.props": {},
-          "buildTransitive/Avalonia.targets": {}
-        }
-      },
-      "Avalonia.Angle.Windows.Natives/2.1.27548.20260419": {
-        "type": "package"
-      },
-      "Avalonia.BuildServices/11.3.2": {
-        "type": "package",
-        "build": {
-          "buildTransitive/Avalonia.BuildServices.targets": {}
-        }
-      },
-      "Avalonia.Desktop/12.0.4": {
-        "type": "package",
-        "dependencies": {
-          "Avalonia": "12.0.4",
-          "Avalonia.HarfBuzz": "12.0.4",
-          "Avalonia.Native": "12.0.4",
-          "Avalonia.Skia": "12.0.4",
-          "Avalonia.Win32": "12.0.4",
-          "Avalonia.X11": "12.0.4"
-        },
-        "compile": {
-          "lib/net10.0/Avalonia.Desktop.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net10.0/Avalonia.Desktop.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "Avalonia.Fonts.Inter/12.0.4": {
-        "type": "package",
-        "dependencies": {
-          "Avalonia": "12.0.4"
-        },
-        "compile": {
-          "lib/net10.0/Avalonia.Fonts.Inter.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net10.0/Avalonia.Fonts.Inter.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "Avalonia.FreeDesktop/12.0.4": {
-        "type": "package",
-        "dependencies": {
-          "Avalonia": "12.0.4",
-          "Tmds.DBus.Protocol": "0.92.0"
-        },
-        "compile": {
-          "lib/net10.0/Avalonia.FreeDesktop.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net10.0/Avalonia.FreeDesktop.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "Avalonia.FreeDesktop.AtSpi/12.0.4": {
-        "type": "package",
-        "dependencies": {
-          "Avalonia": "12.0.4"
-        },
-        "compile": {
-          "lib/net10.0/Avalonia.FreeDesktop.AtSpi.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net10.0/Avalonia.FreeDesktop.AtSpi.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "Avalonia.HarfBuzz/12.0.4": {
-        "type": "package",
-        "dependencies": {
-          "Avalonia": "12.0.4",
-          "HarfBuzzSharp": "8.3.1.3",
-          "HarfBuzzSharp.NativeAssets.Linux": "8.3.1.3",
-          "HarfBuzzSharp.NativeAssets.WebAssembly": "8.3.1.3"
-        },
-        "compile": {
-          "lib/net10.0/Avalonia.HarfBuzz.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net10.0/Avalonia.HarfBuzz.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "Avalonia.Native/12.0.4": {
-        "type": "package",
-        "dependencies": {
-          "Avalonia": "12.0.4"
-        },
-        "compile": {
-          "lib/net10.0/Avalonia.Native.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net10.0/Avalonia.Native.dll": {
-            "related": ".xml"
-          }
-        },
-        "native": {
-          "runtimes/osx/native/libAvaloniaNative.dylib": {}
-        }
-      },
-      "Avalonia.Remote.Protocol/12.0.4": {
-        "type": "package",
-        "compile": {
-          "lib/net10.0/Avalonia.Remote.Protocol.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net10.0/Avalonia.Remote.Protocol.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "Avalonia.Skia/12.0.4": {
-        "type": "package",
-        "dependencies": {
-          "Avalonia": "12.0.4",
-          "HarfBuzzSharp": "8.3.1.3",
-          "HarfBuzzSharp.NativeAssets.Linux": "8.3.1.3",
-          "HarfBuzzSharp.NativeAssets.WebAssembly": "8.3.1.3",
-          "SkiaSharp": "3.119.4",
-          "SkiaSharp.NativeAssets.Linux": "3.119.4",
-          "SkiaSharp.NativeAssets.WebAssembly": "3.119.4"
-        },
-        "compile": {
-          "lib/net10.0/Avalonia.Skia.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net10.0/Avalonia.Skia.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "Avalonia.Themes.Fluent/12.0.4": {
-        "type": "package",
-        "dependencies": {
-          "Avalonia": "12.0.4"
-        },
-        "compile": {
-          "lib/net10.0/Avalonia.Themes.Fluent.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net10.0/Avalonia.Themes.Fluent.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "Avalonia.Win32/12.0.4": {
-        "type": "package",
-        "dependencies": {
-          "Avalonia": "12.0.4",
-          "Avalonia.Angle.Windows.Natives": "2.1.27548.20260419"
-        },
-        "compile": {
-          "lib/net10.0/Avalonia.Win32.Automation.dll": {
-            "related": ".xml"
-          },
-          "lib/net10.0/Avalonia.Win32.dll": {
-            "related": ".Automation.xml;.xml"
-          }
-        },
-        "runtime": {
-          "lib/net10.0/Avalonia.Win32.Automation.dll": {
-            "related": ".xml"
-          },
-          "lib/net10.0/Avalonia.Win32.dll": {
-            "related": ".Automation.xml;.xml"
-          }
-        }
-      },
-      "Avalonia.X11/12.0.4": {
-        "type": "package",
-        "dependencies": {
-          "Avalonia": "12.0.4",
-          "Avalonia.FreeDesktop": "12.0.4",
-          "Avalonia.FreeDesktop.AtSpi": "12.0.4",
-          "Avalonia.Skia": "12.0.4"
-        },
-        "compile": {
-          "lib/net10.0/Avalonia.X11.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net10.0/Avalonia.X11.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "AvaloniaUI.DiagnosticsSupport/2.2.1": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Extensions.Logging.Abstractions": "8.0.0",
-          "Microsoft.IO.RecyclableMemoryStream": "3.0.1"
-        },
-        "compile": {
-          "lib/net10.0/_._": {}
-        },
-        "runtime": {
-          "lib/net10.0/_._": {}
-        },
-        "build": {
-          "buildTransitive/_._": {}
-        },
-        "buildMultiTargeting": {
-          "buildMultiTargeting/_._": {}
-        }
-      },
-      "CommunityToolkit.Mvvm/8.4.1": {
-        "type": "package",
-        "compile": {
-          "lib/net8.0/CommunityToolkit.Mvvm.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net8.0/CommunityToolkit.Mvvm.dll": {
-            "related": ".xml"
-          }
-        },
-        "build": {
-          "buildTransitive/CommunityToolkit.Mvvm.targets": {}
-        }
-      },
-      "HarfBuzzSharp/8.3.1.3": {
-        "type": "package",
-        "dependencies": {
-          "HarfBuzzSharp.NativeAssets.Win32": "8.3.1.3",
-          "HarfBuzzSharp.NativeAssets.macOS": "8.3.1.3"
-        },
-        "compile": {
-          "lib/net8.0/HarfBuzzSharp.dll": {
-            "related": ".pdb"
-          }
-        },
-        "runtime": {
-          "lib/net8.0/HarfBuzzSharp.dll": {
-            "related": ".pdb"
-          }
-        }
-      },
-      "HarfBuzzSharp.NativeAssets.Linux/8.3.1.3": {
-        "type": "package",
-        "compile": {
-          "lib/net8.0/_._": {}
-        },
-        "runtime": {
-          "lib/net8.0/_._": {}
-        }
-      },
-      "HarfBuzzSharp.NativeAssets.macOS/8.3.1.3": {
-        "type": "package",
-        "compile": {
-          "lib/net8.0/_._": {}
-        },
-        "runtime": {
-          "lib/net8.0/_._": {}
-        },
-        "native": {
-          "runtimes/osx/native/libHarfBuzzSharp.dylib": {}
-        }
-      },
-      "HarfBuzzSharp.NativeAssets.WebAssembly/8.3.1.3": {
-        "type": "package",
-        "compile": {
-          "lib/net8.0/_._": {}
-        },
-        "runtime": {
-          "lib/net8.0/_._": {}
-        },
-        "build": {
-          "buildTransitive/netstandard1.0/HarfBuzzSharp.NativeAssets.WebAssembly.props": {},
-          "buildTransitive/netstandard1.0/HarfBuzzSharp.NativeAssets.WebAssembly.targets": {}
-        }
-      },
-      "HarfBuzzSharp.NativeAssets.Win32/8.3.1.3": {
-        "type": "package",
-        "compile": {
-          "lib/net8.0/_._": {}
-        },
-        "runtime": {
-          "lib/net8.0/_._": {}
-        }
-      },
-      "MicroCom.Runtime/0.11.4": {
-        "type": "package",
-        "compile": {
-          "lib/net5.0/MicroCom.Runtime.dll": {}
-        },
-        "runtime": {
-          "lib/net5.0/MicroCom.Runtime.dll": {}
-        }
-      },
-      "Microsoft.Extensions.DependencyInjection.Abstractions/8.0.0": {
-        "type": "package",
-        "compile": {
-          "lib/net8.0/_._": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net8.0/_._": {
-            "related": ".xml"
-          }
-        },
-        "build": {
-          "buildTransitive/net6.0/_._": {}
-        }
-      },
-      "Microsoft.Extensions.Logging.Abstractions/8.0.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0"
-        },
-        "compile": {
-          "lib/net8.0/_._": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net8.0/_._": {
-            "related": ".xml"
-          }
-        },
-        "build": {
-          "buildTransitive/net6.0/_._": {}
-        }
-      },
-      "Microsoft.IO.RecyclableMemoryStream/3.0.1": {
-        "type": "package",
-        "compile": {
-          "lib/net6.0/_._": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net6.0/_._": {
-            "related": ".xml"
-          }
-        }
-      },
-      "NAudio/2.3.0": {
-        "type": "package",
-        "dependencies": {
-          "NAudio.Asio": "2.3.0",
-          "NAudio.Core": "2.3.0",
-          "NAudio.Midi": "2.3.0",
-          "NAudio.Wasapi": "2.3.0",
-          "NAudio.WinMM": "2.3.0"
-        },
-        "compile": {
-          "lib/net6.0/NAudio.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net6.0/NAudio.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "NAudio.Asio/2.3.0": {
-        "type": "package",
-        "dependencies": {
-          "NAudio.Core": "2.3.0"
-        },
-        "compile": {
-          "lib/netstandard2.0/NAudio.Asio.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard2.0/NAudio.Asio.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "NAudio.Core/2.3.0": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard2.0/NAudio.Core.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard2.0/NAudio.Core.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "NAudio.Midi/2.3.0": {
-        "type": "package",
-        "dependencies": {
-          "NAudio.Core": "2.3.0"
-        },
-        "compile": {
-          "lib/netstandard2.0/NAudio.Midi.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard2.0/NAudio.Midi.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "NAudio.Wasapi/2.3.0": {
-        "type": "package",
-        "dependencies": {
-          "NAudio.Core": "2.3.0"
-        },
-        "compile": {
-          "lib/netstandard2.0/NAudio.Wasapi.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard2.0/NAudio.Wasapi.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "NAudio.WinMM/2.3.0": {
-        "type": "package",
-        "dependencies": {
-          "NAudio.Core": "2.3.0"
-        },
-        "compile": {
-          "lib/net6.0/NAudio.WinMM.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net6.0/NAudio.WinMM.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "SkiaSharp/3.119.4": {
-        "type": "package",
-        "dependencies": {
-          "SkiaSharp.NativeAssets.Win32": "3.119.4",
-          "SkiaSharp.NativeAssets.macOS": "3.119.4"
-        },
-        "compile": {
-          "ref/net10.0/SkiaSharp.dll": {}
-        },
-        "runtime": {
-          "lib/net10.0/SkiaSharp.dll": {
-            "related": ".pdb"
-          }
-        }
-      },
-      "SkiaSharp.NativeAssets.Linux/3.119.4": {
-        "type": "package",
-        "compile": {
-          "lib/net10.0/_._": {}
-        },
-        "runtime": {
-          "lib/net10.0/_._": {}
-        }
-      },
-      "SkiaSharp.NativeAssets.macOS/3.119.4": {
-        "type": "package",
-        "compile": {
-          "lib/net10.0/_._": {}
-        },
-        "runtime": {
-          "lib/net10.0/_._": {}
-        },
-        "native": {
-          "runtimes/osx/native/libSkiaSharp.dylib": {}
-        }
-      },
-      "SkiaSharp.NativeAssets.WebAssembly/3.119.4": {
-        "type": "package",
-        "compile": {
-          "lib/net10.0/_._": {}
-        },
-        "runtime": {
-          "lib/net10.0/_._": {}
-        },
-        "build": {
-          "buildTransitive/netstandard1.0/SkiaSharp.NativeAssets.WebAssembly.props": {},
-          "buildTransitive/netstandard1.0/SkiaSharp.NativeAssets.WebAssembly.targets": {}
-        }
-      },
-      "SkiaSharp.NativeAssets.Win32/3.119.4": {
-        "type": "package",
-        "compile": {
-          "lib/net10.0/_._": {}
-        },
-        "runtime": {
-          "lib/net10.0/_._": {}
         }
       },
       "Tmds.DBus.Protocol/0.92.0": {
@@ -2467,29 +1854,35 @@
     ]
   },
   "packageFolders": {
-    "/Users/mettestorgaard/.nuget/packages/": {}
+    "C:\\Users\\victo\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/mettestorgaard/Documents/GitHub/SimplyGreatTimer/MyApp/MyApp.csproj",
+      "projectUniqueName": "D:\\SimplyGreatTimer\\MyApp\\MyApp.csproj",
       "projectName": "MyApp",
-      "projectPath": "/Users/mettestorgaard/Documents/GitHub/SimplyGreatTimer/MyApp/MyApp.csproj",
-      "packagesPath": "/Users/mettestorgaard/.nuget/packages/",
-      "outputPath": "/Users/mettestorgaard/Documents/GitHub/SimplyGreatTimer/MyApp/obj/",
+      "projectPath": "D:\\SimplyGreatTimer\\MyApp\\MyApp.csproj",
+      "packagesPath": "C:\\Users\\victo\\.nuget\\packages\\",
+      "outputPath": "D:\\SimplyGreatTimer\\MyApp\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/Users/mettestorgaard/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\victo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net10.0": {
-          "framework": "net10.0",
           "targetAlias": "net10.0",
           "projectReferences": {}
         }
@@ -2504,11 +1897,10 @@
         "auditLevel": "low",
         "auditMode": "all"
       },
-      "SdkAnalysisLevel": "10.0.300"
+      "SdkAnalysisLevel": "10.0.100"
     },
     "frameworks": {
       "net10.0": {
-        "framework": "net10.0",
         "targetAlias": "net10.0",
         "dependencies": {
           "Avalonia": {
@@ -2528,8 +1920,6 @@
             "version": "[12.0.4, )"
           },
           "AvaloniaUI.DiagnosticsSupport": {
-            "include": "None",
-            "suppressParent": "All",
             "target": "Package",
             "version": "[2.2.1, )"
           },
@@ -2553,22 +1943,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Runtime.osx-arm64",
-            "version": "[10.0.9, 10.0.9]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Runtime.osx-arm64",
-            "version": "[10.0.9, 10.0.9]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.301/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100-rc.2.25502.107/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.CSharp": "(,4.7.32767]",
           "Microsoft.VisualBasic": "(,10.4.32767]",
@@ -2716,7 +2096,7 @@
           "System.Buffers": "(,5.0.32767]",
           "System.Collections": "(,4.3.32767]",
           "System.Collections.Concurrent": "(,4.3.32767]",
-          "System.Collections.Immutable": "(,10.0.32767]",
+          "System.Collections.Immutable": "(,10.0.0-rc.2.25502.107]",
           "System.Collections.NonGeneric": "(,4.3.32767]",
           "System.Collections.Specialized": "(,4.3.32767]",
           "System.ComponentModel": "(,4.3.32767]",
@@ -2729,7 +2109,7 @@
           "System.Data.DataSetExtensions": "(,4.4.32767]",
           "System.Diagnostics.Contracts": "(,4.3.32767]",
           "System.Diagnostics.Debug": "(,4.3.32767]",
-          "System.Diagnostics.DiagnosticSource": "(,10.0.32767]",
+          "System.Diagnostics.DiagnosticSource": "(,10.0.0-rc.2.25502.107]",
           "System.Diagnostics.FileVersionInfo": "(,4.3.32767]",
           "System.Diagnostics.Process": "(,4.3.32767]",
           "System.Diagnostics.StackTrace": "(,4.3.32767]",
@@ -2739,8 +2119,8 @@
           "System.Diagnostics.Tracing": "(,4.3.32767]",
           "System.Drawing.Primitives": "(,4.3.32767]",
           "System.Dynamic.Runtime": "(,4.3.32767]",
-          "System.Formats.Asn1": "(,10.0.32767]",
-          "System.Formats.Tar": "(,10.0.32767]",
+          "System.Formats.Asn1": "(,10.0.0-rc.2.25502.107]",
+          "System.Formats.Tar": "(,10.0.0-rc.2.25502.107]",
           "System.Globalization": "(,4.3.32767]",
           "System.Globalization.Calendars": "(,4.3.32767]",
           "System.Globalization.Extensions": "(,4.3.32767]",
@@ -2754,25 +2134,25 @@
           "System.IO.FileSystem.Watcher": "(,4.3.32767]",
           "System.IO.IsolatedStorage": "(,4.3.32767]",
           "System.IO.MemoryMappedFiles": "(,4.3.32767]",
-          "System.IO.Pipelines": "(,10.0.32767]",
+          "System.IO.Pipelines": "(,10.0.0-rc.2.25502.107]",
           "System.IO.Pipes": "(,4.3.32767]",
           "System.IO.Pipes.AccessControl": "(,5.0.32767]",
           "System.IO.UnmanagedMemoryStream": "(,4.3.32767]",
           "System.Linq": "(,4.3.32767]",
-          "System.Linq.AsyncEnumerable": "(,10.0.32767]",
+          "System.Linq.AsyncEnumerable": "(,10.0.0-rc.2.25502.107]",
           "System.Linq.Expressions": "(,4.3.32767]",
           "System.Linq.Parallel": "(,4.3.32767]",
           "System.Linq.Queryable": "(,4.3.32767]",
           "System.Memory": "(,5.0.32767]",
           "System.Net.Http": "(,4.3.32767]",
-          "System.Net.Http.Json": "(,10.0.32767]",
+          "System.Net.Http.Json": "(,10.0.0-rc.2.25502.107]",
           "System.Net.NameResolution": "(,4.3.32767]",
           "System.Net.NetworkInformation": "(,4.3.32767]",
           "System.Net.Ping": "(,4.3.32767]",
           "System.Net.Primitives": "(,4.3.32767]",
           "System.Net.Requests": "(,4.3.32767]",
           "System.Net.Security": "(,4.3.32767]",
-          "System.Net.ServerSentEvents": "(,10.0.32767]",
+          "System.Net.ServerSentEvents": "(,10.0.0-rc.2.25502.107]",
           "System.Net.Sockets": "(,4.3.32767]",
           "System.Net.WebHeaderCollection": "(,4.3.32767]",
           "System.Net.WebSockets": "(,4.3.32767]",
@@ -2787,7 +2167,7 @@
           "System.Reflection.Emit.ILGeneration": "(,4.7.32767]",
           "System.Reflection.Emit.Lightweight": "(,4.7.32767]",
           "System.Reflection.Extensions": "(,4.3.32767]",
-          "System.Reflection.Metadata": "(,10.0.32767]",
+          "System.Reflection.Metadata": "(,10.0.0-rc.2.25502.107]",
           "System.Reflection.Primitives": "(,4.3.32767]",
           "System.Reflection.TypeExtensions": "(,4.3.32767]",
           "System.Resources.Reader": "(,4.3.32767]",
@@ -2819,17 +2199,17 @@
           "System.Security.Principal.Windows": "(,5.0.32767]",
           "System.Security.SecureString": "(,4.3.32767]",
           "System.Text.Encoding": "(,4.3.32767]",
-          "System.Text.Encoding.CodePages": "(,10.0.32767]",
+          "System.Text.Encoding.CodePages": "(,10.0.0-rc.2.25502.107]",
           "System.Text.Encoding.Extensions": "(,4.3.32767]",
-          "System.Text.Encodings.Web": "(,10.0.32767]",
-          "System.Text.Json": "(,10.0.32767]",
+          "System.Text.Encodings.Web": "(,10.0.0-rc.2.25502.107]",
+          "System.Text.Json": "(,10.0.0-rc.2.25502.107]",
           "System.Text.RegularExpressions": "(,4.3.32767]",
           "System.Threading": "(,4.3.32767]",
-          "System.Threading.AccessControl": "(,10.0.32767]",
-          "System.Threading.Channels": "(,10.0.32767]",
+          "System.Threading.AccessControl": "(,10.0.0-rc.2.25502.107]",
+          "System.Threading.Channels": "(,10.0.0-rc.2.25502.107]",
           "System.Threading.Overlapped": "(,4.3.32767]",
           "System.Threading.Tasks": "(,4.3.32767]",
-          "System.Threading.Tasks.Dataflow": "(,10.0.32767]",
+          "System.Threading.Tasks.Dataflow": "(,10.0.0-rc.2.25502.107]",
           "System.Threading.Tasks.Extensions": "(,5.0.32767]",
           "System.Threading.Tasks.Parallel": "(,4.3.32767]",
           "System.Threading.Thread": "(,4.3.32767]",
@@ -2843,11 +2223,6 @@
           "System.Xml.XPath": "(,4.3.32767]",
           "System.Xml.XPath.XDocument": "(,5.0.32767]"
         }
-      }
-    },
-    "runtimes": {
-      "osx-arm64": {
-        "#import": []
       }
     }
   }
