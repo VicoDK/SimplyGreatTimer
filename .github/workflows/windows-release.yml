@@ -1,16 +1,36 @@
-- name: Publish Windows app
-  run: dotnet publish -c Release -r win-x64 --self-contained true
+name: Windows Release (.exe installer)
 
-- name: Install Inno Setup
-  run: choco install innosetup -y
+on:
+  push:
+    tags:
+      - "v*"
 
-- name: Build installer
-  run: |
-    iscc installer.iss
+jobs:
+  build:
+    runs-on: windows-latest
 
-- name: Upload installer
-  uses: softprops/action-gh-release@v2
-  with:
-    files: Output/SimplyGreatTimer-Setup.exe
-  env:
-    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Publish
+        run: dotnet publish -c Release -r win-x64 --self-contained true
+
+      - name: Install Inno Setup
+        run: choco install innosetup -y
+
+      - name: Build installer
+        run: iscc installer.iss
+
+      - name: Upload Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: Output/*.exe
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

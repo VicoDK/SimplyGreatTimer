@@ -1,0 +1,35 @@
+name: Mac Release (.dmg)
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Publish
+        run: dotnet publish -c Release -r osx-arm64 --self-contained true
+
+      - name: Install create-dmg
+        run: brew install create-dmg
+
+      - name: Create DMG
+        run: |
+          APP=$(find bin/Release -name "*.app" | head -n 1)
+          create-dmg "$APP" SimplyGreatTimer.dmg
+
+      - name: Upload Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: SimplyGreatTimer.dmg
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
