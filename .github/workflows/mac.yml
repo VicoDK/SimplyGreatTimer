@@ -1,4 +1,4 @@
-name: Mac Release (.dmg)
+name: Mac Release (DMG)
 
 on:
   push:

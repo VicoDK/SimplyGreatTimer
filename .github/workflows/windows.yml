@@ -1,4 +1,4 @@
-name: Windows Release (.exe installer)
+name: Windows Release (Installer)
 
 on:
   push:
@@ -31,6 +31,6 @@ jobs:
       - name: Upload Release
         uses: softprops/action-gh-release@v2
         with:
-          files: Output/*.exe
+          files: Output/SimplyGreatTimer-Setup.exe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
