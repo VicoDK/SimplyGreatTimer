@@ -1,0 +1,44 @@
+name: Build macOS Release (.app + .dmg)
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build-mac:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Publish macOS app
+        run: |
+          dotnet publish -c Release -r osx-arm64 --self-contained true
+
+      - name: Install create-dmg
+        run: brew install create-dmg
+
+      - name: Create DMG
+        run: |
+          APP_PATH=$(find bin/Release -name "*.app" | head -n 1)
+          create-dmg \
+            --volname "MyApp Installer" \
+            "$APP_PATH" \
+            MyApp.dmg
+
+      - name: Upload DMG to GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: MyApp.dmg
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
