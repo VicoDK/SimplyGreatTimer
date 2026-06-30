@@ -4,7 +4,7 @@ AppVersion=1.0
 DefaultDirName={pf}\SimplyGreatTimer
 DefaultGroupName=SimplyGreatTimer
 OutputDir=Output
-OutputBaseFilename=SimplyGreatTimer-Setup
+OutputBaseFilename=SimplyGreatTimer-Windows-Install
 Compression=lzma
 SolidCompression=yes
 
