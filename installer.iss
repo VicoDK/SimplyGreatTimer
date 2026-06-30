@@ -13,3 +13,4 @@ Source: "publish\*"; DestDir: "{app}"; Flags: recursesubdirs
 
 [Icons]
 Name: "{group}\SimplyGreatTimer"; Filename: "{app}\MyApp.exe"
+Name: "{commondesktop}\SimplyGreatTimer"; Filename: "{app}\MyApp.exe"
