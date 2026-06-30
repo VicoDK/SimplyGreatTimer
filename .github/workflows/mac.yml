@@ -1,4 +1,4 @@
-name: Mac Build
+name: Mac Installer
 
 permissions:
   contents: write
@@ -25,8 +25,6 @@ jobs:
 
       - run: dotnet publish MyApp/MyApp.csproj -c Release -r osx-arm64 --self-contained true -o macbuild
 
-      - run: ls -R macbuild
-
       - run: mkdir dmg && cp -R macbuild/* dmg/
 
       - run: brew install create-dmg
@@ -38,13 +36,11 @@ jobs:
             --window-size 600 300 \
             --icon-size 100 \
             --app-drop-link 450 150 \
-            SimplyGreatTimer.dmg \
+            SimplyGreatTimer-MacOS-Install.dmg \
             dmg/
-
-      - run: ls -la
 
       - uses: softprops/action-gh-release@v2
         with:
-          files: SimplyGreatTimer.dmg
+          files: SimplyGreatTimer-MacOS-Install.dmg
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
