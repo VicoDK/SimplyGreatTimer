@@ -19,10 +19,10 @@ jobs:
           dotnet-version: 8.0.x
 
       - name: Restore
-        run: dotnet restore
+        run: dotnet restore MyApp/MyApp.csproj
 
       - name: Publish
-        run: dotnet publish -c Release -r win-x64 --self-contained true
+        run: dotnet publish MyApp/MyApp.csproj -c Release -r win-x64 --self-contained true
 
       - name: Install Inno Setup
         run: choco install innosetup -y
@@ -30,7 +30,7 @@ jobs:
       - name: Build installer
         run: iscc installer.iss
 
-      - name: Show output (DEBUG)
+      - name: Verify installer exists
         run: dir Output
 
       - name: Upload installer
