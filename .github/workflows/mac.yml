@@ -23,13 +23,13 @@ jobs:
 
       - run: dotnet restore MyApp/MyApp.csproj
 
-      - run: dotnet publish MyApp/MyApp.csproj -c Release -r osx-arm64 --self-contained true /p:UseAppHost=true /p:PublishSingleFile=false -o macbuild
+      - run: dotnet publish MyApp/MyApp.csproj -c Release -r osx-arm64 --self-contained true -p:UseAppHost=true -p:PublishSingleFile=false
 
-      - run: ls -R macbuild
+      - run: find . -name "*.app"
 
       - run: mkdir dmg
 
-      - run: cp -R macbuild/*.app dmg/
+      - run: cp -R **/*.app dmg/
 
       - run: brew install create-dmg
 
@@ -39,7 +39,6 @@ jobs:
             --window-pos 200 120 \
             --window-size 600 350 \
             --icon-size 100 \
-            --icon "SimplyGreatTimer.app" 150 150 \
             --app-drop-link 450 150 \
             SimplyGreatTimer-MacOS-Install.dmg \
             dmg/
