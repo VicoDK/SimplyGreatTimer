@@ -1,0 +1,47 @@
+name: Mac Build
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Clean
+        run: dotnet nuget locals all --clear
+
+      - name: Restore
+        run: dotnet restore MyApp/MyApp.csproj
+
+      - name: Publish
+        run: dotnet publish MyApp/MyApp.csproj -c Release -r osx-arm64 --self-contained true -o macbuild
+
+      - name: Show output
+        run: ls -R macbuild
+
+      - name: Create DMG folder structure
+        run: |
+          mkdir dmg
+          cp -R macbuild/* dmg/
+
+      - name: Install create-dmg
+        run: brew install create-dmg
+
+      - name: Build DMG
+        run: create-dmg dmg SimplyGreatTimer.dmg
+
+      - name: Upload DMG
+        uses: softprops/action-gh-release@v2
+        with:
+          files: SimplyGreatTimer.dmg
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
