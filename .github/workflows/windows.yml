@@ -33,6 +33,9 @@ jobs:
       - name: Publish application
         run: dotnet publish MyApp/MyApp.csproj -c Release -r win-x64 --self-contained true -o publish
 
+      - name: Delete raw publish exe
+        run: del MyApp\bin\Release\win-x64\publish\*.exe
+
       - name: Install Inno Setup
         run: choco install innosetup -y
 
