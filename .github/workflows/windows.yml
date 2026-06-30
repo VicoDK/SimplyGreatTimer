@@ -13,38 +13,24 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup .NET SDK
-        uses: actions/setup-dotnet@v4
+      - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
 
-      - name: Clean NuGet cache (SAFE)
-        run: dotnet nuget locals all --clear
+      - run: dotnet restore MyApp/MyApp.csproj
 
-      - name: Restore dependencies
-        run: dotnet restore MyApp/MyApp.csproj --force
+      - run: dotnet publish MyApp/MyApp.csproj -c Release -r win-x64 --self-contained true -o publish
 
-      - name: Clean build
-        run: dotnet clean MyApp/MyApp.csproj
+      - run: choco install innosetup -y
 
-      - name: Publish application
-        run: dotnet publish MyApp/MyApp.csproj -c Release -r win-x64 --self-contained true -o publish
+      - run: iscc installer.iss
 
-      - name: Install Inno Setup
-        run: choco install innosetup -y
+      - run: dir Output
 
-      - name: Build installer
-        run: iscc installer.iss
-
-      - name: Check output folder
-        run: dir Output
-
-      - name: Upload installer to GitHub Release
-        uses: softprops/action-gh-release@v2
+      - uses: softprops/action-gh-release@v2
         with:
-          files: Output/*.exe
+          files: Output/SimplyGreatTimer-Windows-Install.exe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
