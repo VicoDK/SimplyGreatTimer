@@ -17,29 +17,35 @@ jobs:
 
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 10.0.x
 
       - run: dotnet nuget locals all --clear
 
       - run: dotnet restore MyApp/MyApp.csproj
 
-      - run: dotnet publish MyApp/MyApp.csproj -c Release -r osx-arm64 --self-contained true -p:UseAppHost=true -p:PublishSingleFile=false
+      - run: |
+          dotnet publish MyApp/MyApp.csproj \
+            -c Release \
+            -r osx-arm64 \
+            --self-contained true \
+            -p:UseAppHost=true \
+            -p:PublishSingleFile=false \
+            -o publish
 
-      - run: find . -name "*.app"
+      - run: ls -R publish
+
+      - run: chmod -R +x publish || true
 
       - run: mkdir dmg
 
-      - run: cp -R **/*.app dmg/
+      - run: cp -R publish/. dmg/
 
       - run: brew install create-dmg
 
       - run: |
           create-dmg \
             --volname "SimplyGreatTimer" \
-            --window-pos 200 120 \
-            --window-size 600 350 \
-            --icon-size 100 \
-            --app-drop-link 450 150 \
+            --window-size 700 400 \
             SimplyGreatTimer-MacOS-Install.dmg \
             dmg/
 
