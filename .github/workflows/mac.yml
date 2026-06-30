@@ -26,19 +26,22 @@ jobs:
       - run: |
           dotnet publish MyApp/MyApp.csproj \
             -c Release \
+            -f net10.0 \
             -r osx-arm64 \
             --self-contained true \
             -p:UseAppHost=true \
-            -p:PublishSingleFile=false \
-            -o publish
+            -p:PublishSingleFile=false
 
-      - run: ls -R publish
+      - run: |
+          APP=$(find MyApp/bin/Release -name "*.app" | head -n 1)
 
-      - run: chmod -R +x publish || true
+          if [ -z "$APP" ]; then
+            echo "No .app produced"
+            exit 1
+          fi
 
-      - run: mkdir dmg
-
-      - run: cp -R publish/. dmg/
+          mkdir package
+          cp -R "$APP" package/SimplyGreatTimer.app
 
       - run: brew install create-dmg
 
@@ -46,8 +49,11 @@ jobs:
           create-dmg \
             --volname "SimplyGreatTimer" \
             --window-size 700 400 \
-            SimplyGreatTimer-MacOS-Install.dmg \
-            dmg/
+            --icon-size 120 \
+            --icon "SimplyGreatTimer.app" 180 180 \
+            --app-drop-link 500 180 \
+            "SimplyGreatTimer-MacOS-Install.dmg" \
+            package/
 
       - uses: softprops/action-gh-release@v2
         with:
