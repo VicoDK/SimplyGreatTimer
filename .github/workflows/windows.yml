@@ -10,18 +10,24 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup .NET
+      - name: Setup .NET SDK
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
 
-      - name: Restore
-        run: dotnet restore MyApp/MyApp.csproj
+      - name: Clean NuGet cache (SAFE)
+        run: dotnet nuget locals all --clear
 
-      - name: Publish
+      - name: Restore dependencies
+        run: dotnet restore MyApp/MyApp.csproj --force
+
+      - name: Clean build
+        run: dotnet clean MyApp/MyApp.csproj
+
+      - name: Publish application
         run: dotnet publish MyApp/MyApp.csproj -c Release -r win-x64 --self-contained true
 
       - name: Install Inno Setup
@@ -30,10 +36,10 @@ jobs:
       - name: Build installer
         run: iscc installer.iss
 
-      - name: Verify installer exists
+      - name: Check output folder
         run: dir Output
 
-      - name: Upload installer
+      - name: Upload installer to GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           files: Output/*.exe
