@@ -9,7 +9,7 @@ Compression=lzma
 SolidCompression=yes
 
 [Files]
-Source: "MyApp\bin\Release\win-x64\publish\*"; DestDir: "{app}"; Flags: recursesubdirs
+Source: "publish\*"; DestDir: "{app}"; Flags: recursesubdirs
 
 [Icons]
 Name: "{group}\SimplyGreatTimer"; Filename: "{app}\MyApp.exe"
