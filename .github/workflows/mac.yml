@@ -10,25 +10,28 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - uses: actions/checkout@v4
 
-      - uses: actions/setup-dotnet@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
 
-      - name: Clean
+      - name: Clean NuGet cache
         run: dotnet nuget locals all --clear
 
-      - name: Restore
+      - name: Restore project
         run: dotnet restore MyApp/MyApp.csproj
 
-      - name: Publish
+      - name: Publish app
         run: dotnet publish MyApp/MyApp.csproj -c Release -r osx-arm64 --self-contained true -o macbuild
 
-      - name: Show output
+      - name: List build output
         run: ls -R macbuild
 
-      - name: Create DMG folder structure
+      - name: Prepare DMG folder
         run: |
           mkdir dmg
           cp -R macbuild/* dmg/
@@ -36,8 +39,19 @@ jobs:
       - name: Install create-dmg
         run: brew install create-dmg
 
-      - name: Build DMG
-        run: create-dmg dmg SimplyGreatTimer.dmg
+      - name: Create DMG
+        run: |
+          create-dmg \
+            --volname "SimplyGreatTimer" \
+            --window-pos 200 120 \
+            --window-size 600 300 \
+            --icon-size 100 \
+            --app-drop-link 450 150 \
+            SimplyGreatTimer.dmg \
+            dmg/
+
+      - name: Check DMG exists
+        run: ls -la
 
       - name: Upload DMG
         uses: softprops/action-gh-release@v2
