@@ -1,5 +1,8 @@
 name: Windows Installer
 
+permissions:
+  contents: write
+
 on:
   push:
     tags:
