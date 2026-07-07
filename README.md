@@ -23,7 +23,8 @@ SimplyGreatTimer is a simple timer app that can be used for studing or working a
 
 ## Download
 
-**[Download SimplyGreatTimer](https://www.dropbox.com/scl/fi/ykf2s8zsdt1rlcnx60lq6/SimplyGreatTimer.exe?rlkey=vkh273h4szmhf5jblyjttbeu1&st=d9w5nqz0&dl=0)**
+[![Download Latest](https://img.shields.io/badge/Download-Windows_Installer-blue)](https://github.com/VicoDK/SimplyGreatTimer/releases/latest/download/SimplyGreatTimer-Windows-Install.exe)
+
 
 ## Attribution
 
