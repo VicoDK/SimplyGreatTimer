@@ -169,7 +169,7 @@
         <Grid ColumnDefinitions="*,Auto">
 
             <StackPanel>
-                <TextBlock Text="Version Prerelease 1.0"/>
+                <TextBlock Text="Version 1.0"/>
 
                 <TextBlock Text="Github"
                            Cursor="Hand"
