@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <TargetFramework>net10.0</TargetFramework>
 
     <Nullable>enable</Nullable>
@@ -15,7 +15,10 @@
     <UseAppHost>true</UseAppHost>
     <SelfContained>true</SelfContained>
     <PublishSingleFile>false</PublishSingleFile>
+  <RuntimeIdentifier>win-x64</RuntimeIdentifier>
   </PropertyGroup>
+
+
 
   <ItemGroup>
     <Folder Include="Models\" />
