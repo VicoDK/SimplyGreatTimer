@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\SimplyGreatTimer\\myapp\\MyApp.csproj": {}
+    "D:\\SimplyGreatTimer\\MyApp\\MyApp.csproj": {}
   },
   "projects": {
-    "D:\\SimplyGreatTimer\\myapp\\MyApp.csproj": {
+    "D:\\SimplyGreatTimer\\MyApp\\MyApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\SimplyGreatTimer\\myapp\\MyApp.csproj",
+        "projectUniqueName": "D:\\SimplyGreatTimer\\MyApp\\MyApp.csproj",
         "projectName": "MyApp",
-        "projectPath": "D:\\SimplyGreatTimer\\myapp\\MyApp.csproj",
+        "projectPath": "D:\\SimplyGreatTimer\\MyApp\\MyApp.csproj",
         "packagesPath": "C:\\Users\\victo\\.nuget\\packages\\",
-        "outputPath": "D:\\SimplyGreatTimer\\myapp\\obj\\",
+        "outputPath": "D:\\SimplyGreatTimer\\MyApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

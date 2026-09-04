@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1kRNbt1uL/c=",
+  "dgSpecHash": "FsLYyjNRMFk=",
   "success": true,
-  "projectFilePath": "D:\\SimplyGreatTimer\\myapp\\MyApp.csproj",
+  "projectFilePath": "D:\\SimplyGreatTimer\\MyApp\\MyApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\victo\\.nuget\\packages\\avalonia\\12.0.4\\avalonia.12.0.4.nupkg.sha512",
     "C:\\Users\\victo\\.nuget\\packages\\avalonia.angle.windows.natives\\2.1.27548.20260419\\avalonia.angle.windows.natives.2.1.27548.20260419.nupkg.sha512",
